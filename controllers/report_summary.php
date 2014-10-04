@@ -1,0 +1,158 @@
+<?php
+include '../lib/config.php';
+include '../lib/function.php';
+include '../models/report_summary_model.php';
+$page = null;
+$page = (isset($_GET['page'])) ? $_GET['page'] : "list";
+$title = ucfirst("Report summary");
+
+$_SESSION['menu_active'] = 3;
+
+switch ($page) {
+	
+	case 'list':
+		get_header();
+
+		$id = (isset($_GET['id'])) ? $_GET['id'] : null;
+		
+		$date_default = "";
+		$date_url = "";
+		$i_owner_id = "";
+		
+		if(isset($_GET['preview'])){
+			$i_date = get_isset($_GET['date']);
+			$date_default = $i_date;
+			$date_url = "&date=".str_replace(" ","", $i_date);
+			$i_owner_id = get_isset($_GET['owner']);
+		}
+		
+		$action = "report_summary.php?page=form_result&preview=1";
+		
+		include '../views/report_summary/form.php';
+		
+		if(isset($_GET['preview'])){
+			
+				if(isset($_GET['date'])){
+					$i_date = $_GET['date'];
+				}else{
+					extract($_POST);
+					$i_date = get_isset($i_date);
+				}
+			
+			$date = format_back_date($i_date);
+			
+			$i_owner_id = get_isset($_GET['owner']);
+			
+			$query_item = select_summary($date, $i_owner_id);
+			
+			$max_vol = get_max_vol($date, $i_owner_id);
+			
+			$total_truk = get_total_truk($date, $i_owner_id);
+			$total_pengiriman = get_total_pengiriman($date, $i_owner_id);
+			$total_volume = (get_total_volume($date, $i_owner_id)) ? get_total_volume($date, $i_owner_id) : 0;
+			
+			$total_jasa_angkut = get_total_jasa_angkut($date, $i_owner_id);
+			$total_subsidi_tol = get_total_subsidi_tol($date, $i_owner_id);
+			$total_harga_urukan = get_total_harga_urukan($date, $i_owner_id);
+			$total_hpp = get_total_hpp($date, $i_owner_id);
+			
+			include '../views/report_summary/form_result.php';
+			include '../views/report_summary/list_total.php';
+			
+			if($total_truk > 0){
+				include '../views/report_summary/list_item.php';
+			}
+		}
+		
+		
+		get_footer();
+	break;
+
+	case 'form_result':
+		
+
+		$id = (isset($_GET['id'])) ? $_GET['id'] : null;
+		
+		$date_default = "";
+		$date_url = "";
+		
+		//if(isset($_GET['preview'])){
+			$i_owner_id = (isset($_POST['i_owner_id'])) ? $_POST['i_owner_id'] : null;
+			extract($_POST);
+			$i_date = (isset($_POST['i_date'])) ? $_POST['i_date'] : null;
+			$date_default = $i_date;
+			$date_url = "&date=".str_replace(" ","", $i_date);
+		//}
+		
+		header("Location: report_summary.php?page=list&preview=1&date=$date_default&owner=$i_owner_id");
+	break;
+	
+
+	
+	case 'form_detail':
+		$title = ucfirst("Report Event Detail");
+		get_header();
+
+
+			$id = (isset($_GET['id'])) ? $_GET['id'] : null;
+			$date1 = (isset($_GET['date1'])) ? $_GET['date1'] : null;
+			$date2 = (isset($_GET['date2'])) ? $_GET['date2'] : null;
+			$owner_id = (isset($_GET['owner'])) ? $_GET['owner'] : null;
+		
+			
+			$query_detail=read_id($date1,$date2,$id);
+			$date1 = format_back_date4($date1);
+			$date2 = format_back_date4($date2);
+		
+			$close_button = "report_summary.php?page=list&preview=1&date=$date1 - $date2&owner=$owner_id"; 
+			
+			include '../views/report_summary/list_detail.php';
+		get_footer();
+	break;
+	
+	case 'download_transaction':
+			
+			
+			$i_date = get_isset($_GET['date']);
+			$i_date = str_replace(" ","", $i_date);
+			
+			$date = explode("-", $i_date);
+			$date1 = format_back_date($date[0]);
+			$date2 = format_back_date($date[1]);
+			
+			$query = select_item($date1, $date2);
+			
+			//$title = 'ABSENSI';
+			
+			$title = 'report_summary_'.$date1.'-'.$date2;
+			$format = create_report($title);
+			
+			include '../views/report/report_summary.php';
+			
+
+	break;
+	
+	case 'download_detail':
+			
+			$id = (isset($_GET['id'])) ? $_GET['id'] : null;
+			
+			$row = read_id($id);
+			$row->transaction_date = format_date($row->transaction_date);
+			$row->transaction_date2 = format_date($row->transaction_date2);
+			$all_date = $row->transaction_date." - ".$row->transaction_date2;
+
+			$query_trainer_view = read_trainer_view($id);
+			$query_agent_view = read_agent_view($id);
+			
+			$title = 'Report_Detail';
+			$format = create_report($title);
+			
+			include '../views/report/report_detail.php';
+			
+
+	break;
+	
+	
+}
+
+?>
