@@ -129,7 +129,10 @@ for($i2=0; $i2<=3; $i2++){
 												while($r_vol = mysql_fetch_array($q_vol)){
 												?>
                                                 
-                                                <td><?= $r_vol['truck_volume'] ?></td>
+                                                <td><?php $vol_no = $r_vol['truck_volume']; 
+												$vol_no = str_replace(".",",",  $vol_no);
+												echo $vol_no;
+												?></td>
                                                <?php
 											   $n_vol++;
 												}
@@ -149,6 +152,9 @@ for($i2=0; $i2<=3; $i2++){
                                                 <td><?= $r_par->jumlah_rit?></td>
                                                 <td><?php
 														$jumlah_volume =  get_jumlah_volume($date, $row_item['truck_id']);
+														
+														$jumlah_volume = str_replace(".",",",  $jumlah_volume);
+												
 														echo $jumlah_volume; ?></td>
                                                 <td><?= ($row_item['transaction_transport_service']); ?></td>
                                                 <td><?= ($row_item['transaction_toll_subsidy']); ?></td>

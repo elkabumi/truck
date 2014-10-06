@@ -124,6 +124,7 @@ switch ($page) {
 			$total_truk = get_total_truk($date, $i_owner_id);
 			$total_pengiriman = get_total_pengiriman($date, $i_owner_id);
 			$total_volume = (get_total_volume($date, $i_owner_id)) ? get_total_volume($date, $i_owner_id) : 0;
+			$total_volume = str_replace(".",",", $total_volume);
 			
 			$total_jasa_angkut = get_total_jasa_angkut($date, $i_owner_id);
 			$total_subsidi_tol = get_total_subsidi_tol($date, $i_owner_id);
