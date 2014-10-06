@@ -110,21 +110,29 @@ switch ($page) {
 		get_footer();
 	break;
 	
-	case 'download_transaction':
+	case 'download':
+
+			$date = get_isset($_GET['date']);
+			$date = format_back_date($date);
+			$i_owner_id = get_isset($_GET['owner']);
 			
 			
-			$i_date = get_isset($_GET['date']);
-			$i_date = str_replace(" ","", $i_date);
+			$query_item = select_summary($date, $i_owner_id);
 			
-			$date = explode("-", $i_date);
-			$date1 = format_back_date($date[0]);
-			$date2 = format_back_date($date[1]);
+			$max_vol = get_max_vol($date, $i_owner_id);
 			
-			$query = select_item($date1, $date2);
+			$total_truk = get_total_truk($date, $i_owner_id);
+			$total_pengiriman = get_total_pengiriman($date, $i_owner_id);
+			$total_volume = (get_total_volume($date, $i_owner_id)) ? get_total_volume($date, $i_owner_id) : 0;
+			
+			$total_jasa_angkut = get_total_jasa_angkut($date, $i_owner_id);
+			$total_subsidi_tol = get_total_subsidi_tol($date, $i_owner_id);
+			$total_harga_urukan = get_total_harga_urukan($date, $i_owner_id);
+			$total_hpp = get_total_hpp($date, $i_owner_id);
 			
 			//$title = 'ABSENSI';
 			
-			$title = 'report_summary_'.$date1.'-'.$date2;
+			$title = 'report_summary_'.$date;
 			$format = create_report($title);
 			
 			include '../views/report/report_summary.php';
@@ -132,25 +140,9 @@ switch ($page) {
 
 	break;
 	
-	case 'download_detail':
-			
-			$id = (isset($_GET['id'])) ? $_GET['id'] : null;
-			
-			$row = read_id($id);
-			$row->transaction_date = format_date($row->transaction_date);
-			$row->transaction_date2 = format_date($row->transaction_date2);
-			$all_date = $row->transaction_date." - ".$row->transaction_date2;
-
-			$query_trainer_view = read_trainer_view($id);
-			$query_agent_view = read_agent_view($id);
-			
-			$title = 'Report_Detail';
-			$format = create_report($title);
-			
-			include '../views/report/report_detail.php';
-			
-
-	break;
+	
+	
+	
 	
 	
 }

@@ -112,41 +112,34 @@ switch ($page) {
 		get_footer();
 	break;
 	
-	case 'download_transaction':
-			
-			
-			$i_date = get_isset($_GET['date']);
+	case 'download':
+	
+			$i_date = $_GET['date'];
 			$i_date = str_replace(" ","", $i_date);
+			$date_real = $_GET['date'];
 			
 			$date = explode("-", $i_date);
 			$date1 = format_back_date($date[0]);
 			$date2 = format_back_date($date[1]);
 			
-			$query = select_item($date1, $date2);
+			$i_owner_id = get_isset($_GET['owner']);
 			
-			//$title = 'ABSENSI';
+			$query_item = select_detail($date1, $date2, $i_owner_id);
 			
-			$title = 'report_detail_'.$date1.'-'.$date2;
-			$format = create_report($title);
+			$selisih=(strtotime($date2)-strtotime($date1))/(60*60*24);
+			$jumlah_hari = $selisih + 1;
+			$jumlah_truk = get_jumlah_truk($date1, $date2, $i_owner_id);
+			$jumlah_pengiriman = get_jumlah_pengiriman($date1, $date2, $i_owner_id);
+			$jumlah_volume = (get_jumlah_volume($date1, $date2, $i_owner_id)) ? get_jumlah_volume($date1, $date2, $i_owner_id) : 0;
+			$jumlah_volume = str_replace(".",",", $jumlah_volume);
 			
-			include '../views/report/report_detail.php';
 			
-
-	break;
-	
-	case 'download_detail':
-			
-			$id = (isset($_GET['id'])) ? $_GET['id'] : null;
-			
-			$row = read_id($id);
-			$row->transaction_date = format_date($row->transaction_date);
-			$row->transaction_date2 = format_date($row->transaction_date2);
-			$all_date = $row->transaction_date." - ".$row->transaction_date2;
-
-			$query_trainer_view = read_trainer_view($id);
-			$query_agent_view = read_agent_view($id);
-			
-			$title = 'Report_Detail';
+			$total_jasa_angkut = get_total_jasa_angkut($date1, $date2, $i_owner_id);
+			$total_subsidi_tol = get_total_subsidi_tol($date1, $date2, $i_owner_id);
+			$total_harga_urukan = get_total_harga_urukan($date1, $date2, $i_owner_id);
+			$total_hpp = get_total_hpp($date1, $date2, $i_owner_id);
+						
+			$title = 'report_detail';
 			$format = create_report($title);
 			
 			include '../views/report/report_detail.php';
