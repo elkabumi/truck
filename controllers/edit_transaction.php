@@ -106,6 +106,11 @@ switch ($page) {
 			
 			$row = read_id2($id_trans);
 		
+				$date1 = format_back_date($date1);
+				$date2 = format_back_date($date2);
+			
+		
+		
 			$action = "edit_transaction.php?page=edit&id=$id&date1=$date1&date2=$date2&owner_id=$owner_id&id_trans=$id_trans";
 			
 	
@@ -125,6 +130,7 @@ switch ($page) {
 	
 			$i_volume = get_isset($i_volume);
 			$i_description = get_isset($i_description);
+			$i_sopir = get_isset($i_sopir);
 			$i_panjang = get_isset($i_panjang);
 			$i_lebar = get_isset($i_lebar);
 			$i_tinngi = get_isset($i_tinngi);
@@ -135,16 +141,13 @@ switch ($page) {
 					 truck_p = '$i_panjang',
 					 truck_l = '$i_lebar',
 					 truck_t = '$i_tinngi',
-					 transaction_hour = '$i_jam'";
+					 transaction_hour = '$i_jam',
+					 truck_driver = '$i_sopir'";
 				
 		update($data, $id_trans);
-				$date1 = explode("/", $date1);
-				$date1 =  $date1[2]."-".$date1[1]."-".$date1[0];
+			
 				
-				$date2 = explode("/", $date2);
-				$date2 =  $date2[2]."-".$date2[1]."-".$date2[0];
-				
-			header('Location: edit_transaction.php?page=form_detail&id='.$id.'&date2='.$date1.'&date2='.$date2.'&owner='.$owner_id.'');
+			header('Location: edit_transaction.php?page=form_detail&id='.$id.'&date1='.$date1.'&date2='.$date2.'&owner='.$owner_id.'');
 
 	break;
 	

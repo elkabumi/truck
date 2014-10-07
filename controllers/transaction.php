@@ -54,7 +54,7 @@ switch ($page) {
 		$total_hpp = $hpp + $get_data_config['toll_subsidy'] + $get_data_config['land_price'];
 		
 		$data = "'','$i_id', '$i_nopol', '$i_volume', '$date_time','$user_id','$i_description', '".$get_data_config['transport_service']."', '".$get_data_config['toll_subsidy']."', '".$get_data_config['land_price']."', '$total_hpp',
-		'$i_hour', '$i_p', '$i_l', '$i_t'
+		'$i_hour', '$i_p', '$i_l', '$i_t','$i_sopir'
 		";
 		
 		

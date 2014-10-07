@@ -46,7 +46,7 @@ function read_agent_view($id){
 	return $query;
 }
 function read_id2($id){
-$query = mysql_query("select a.*, c.owner_name, b.truck_p, b.truck_l, b.truck_t ,b.truck_code	 	
+$query = mysql_query("select a.*, c.owner_name ,b.truck_code	 	
 							from transactions a
 
 						JOIN trucks b ON b.truck_id = a.truck_id

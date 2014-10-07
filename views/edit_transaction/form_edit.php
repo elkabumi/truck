@@ -51,12 +51,23 @@
                                          <div class="form-group">
                                             <label>Tinggi</label>
                                             <input required type="text" name="i_tinngi" class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_t ?>"/>
+                                        
+                                   </div>
+                         
+                                      <div class="form-group">
+                                            <label>Nama sopir</label>
+                                            <input required type="text" name="i_sopir"  class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_driver   ?>"/>
+                                            
                                         </div>
-                                  
+
+         <div class="bootstrap-timepicker">
                                          <div class="form-group">
                                             <label>Jam</label>
-                                            <input required type="text" name="i_jam" class="form-control" placeholder="Enter ..." value="<?php echo $row->transaction_hour ?>"/>
+                                            <input required type="text" name="i_jam" class="form-control timepicker" placeholder="Enter ..."  value="<?php echo $row->transaction_hour ?>"/>
                                         </div>
+                                	</div>
+                                  
+                             
 										<div class="form-group">
                                             <label>Nama Pemilik</label>
                                             <input required type="text" name="i_owner"  readonly="readonly" class="form-control" placeholder="Enter ..." value="<?echo $row->owner_name ?>"/>
@@ -68,7 +79,7 @@
                                         <!-- textarea -->
                                         <div class="form-group">
                                             <label>Keterangan</label>
-                                            <textarea class="form-control" name="i_description" rows="3" placeholder="Enter ..."></textarea>
+                                            <textarea class="form-control" name="i_description" rows="3" placeholder="Enter ..."><?= $row->transaction_description  ?></textarea>
                                         </div>
                                       
                                    

@@ -45,12 +45,19 @@
                                             <label>Nama Suplier</label>
                                             <input required type="text" name="i_owner"  readonly="readonly" class="form-control" placeholder="Enter ..." value="<? echo $row->owner_name ?>"/>
                                         </div>
-                                        
-                                          <div class="form-group">
-                                            <label>Jam</label>
-                                            <input required type="text" name="i_hour"  class="form-control" placeholder="Enter ..." value=""/>
+                                         <div class="form-group">
+                                            <label>Nama sopir</label>
+                                            <input required type="text" name="i_sopir"  class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_driver   ?>"/>
+                                            
                                         </div>
-                                        
+
+         <div class="bootstrap-timepicker">
+                                         <div class="form-group">
+                                            <label>Jam</label>
+                                            <input required type="text" name="i_hour" class="form-control timepicker" placeholder="Enter ...">
+                                        </div>
+                                	</div>
+
                                          <div class="form-group">
                                             <label>Panjang (m)</label>
                                             <input required type="text" name="i_p"  class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_p   ?>"/>
