@@ -82,7 +82,9 @@
                     
                     <div class="box-footer">
                                 <input class="btn btn-primary" type="submit" value="Preview"/>
-                             	 <?php if(isset($_GET['preview'])){ ?><a href="report_detail.php?page=download&date=<?= $_GET['date']?>&owner=<?= $_GET['owner']?>" class="btn btn-primary" >Download</a><?php } ?>
+                             	 <?php if(isset($_GET['preview'])){ ?><a href="report_detail.php?page=download&date=<?= $_GET['date']?>&owner=<?= $_GET['owner']?>" class="btn btn-primary" >Download Excel</a>
+								 <a href="report_detail.php?page=download_pdf&date=<?= $_GET['date']?>&owner=<?= $_GET['owner']?>" class="btn btn-primary" >Download PDF</a>
+								 <?php } ?>
                                 </div>
                             
                             </div><!-- /.box -->

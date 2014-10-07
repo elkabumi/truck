@@ -142,6 +142,51 @@ switch ($page) {
 
 	break;
 	
+	case 'download_pdf':
+		$date = get_isset($_GET['date']);
+		$date_view = $date;
+			$date = format_back_date($date);
+			$i_owner_id = get_isset($_GET['owner']);
+			
+			
+			$query_item = select_summary($date, $i_owner_id);
+			
+			$max_vol = get_max_vol($date, $i_owner_id);
+			
+			$total_truk = get_total_truk($date, $i_owner_id);
+			$total_pengiriman = get_total_pengiriman($date, $i_owner_id);
+			$total_volume = (get_total_volume($date, $i_owner_id)) ? get_total_volume($date, $i_owner_id) : 0;
+			$total_volume = str_replace(".",",", $total_volume);
+			
+			$total_jasa_angkut = get_total_jasa_angkut($date, $i_owner_id);
+			$total_jasa_angkut = str_replace(".",",", $total_jasa_angkut);
+			$total_jasa_angkut = intval($total_jasa_angkut);
+			
+			$total_subsidi_tol = get_total_subsidi_tol($date, $i_owner_id);
+			$total_harga_urukan = get_total_harga_urukan($date, $i_owner_id);
+			$total_hpp = get_total_hpp($date, $i_owner_id);
+			
+			include '../views/report/report_summary_pdf.php';
+			/*
+			 include(dirname(__FILE__).'/../views/report/report_summary_pdf.php');
+			$content = ob_get_clean();
+		
+			// convert to PDF
+			require_once(dirname(__FILE__).'/../lib/htmltopdf/html2pdf.class.php');
+			try
+			{
+				$html2pdf = new HTML2PDF('L', 'A4', 'fr');
+				$html2pdf->pdf->SetDisplayMode('fullpage');
+		//      $html2pdf->pdf->SetProtection(array('print'), 'spipu');
+				$html2pdf->writeHTML($content, isset($_GET['vuehtml']));
+				$html2pdf->Output('exemple07.pdf');
+			}
+			catch(HTML2PDF_exception $e) {
+				echo $e;
+				exit;
+			}*/
+	break;
+	
 	
 	
 	

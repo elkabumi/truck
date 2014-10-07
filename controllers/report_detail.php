@@ -18,6 +18,7 @@ switch ($page) {
 		$date_default = "";
 		$date_url = "";
 		$i_owner_id = "";
+		$button_download = "";
 		
 		if(isset($_GET['preview'])){
 			$i_date = get_isset($_GET['date']);
@@ -66,6 +67,10 @@ switch ($page) {
 			$total_subsidi_tol = get_total_subsidi_tol($date1, $date2, $i_owner_id);
 			$total_harga_urukan = get_total_harga_urukan($date1, $date2, $i_owner_id);
 			$total_hpp = get_total_hpp($date1, $date2, $i_owner_id);
+			
+			
+			
+			
 			
 			include '../views/report_detail/form_result.php';
 			include '../views/report_detail/list_total.php';
@@ -162,6 +167,46 @@ switch ($page) {
 			include '../views/report/report_detail.php';
 			
 
+	break;
+	
+	case 'download_pdf':
+			$i_date = $_GET['date'];
+			$date_view = $_GET['date'];
+			$i_date = str_replace(" ","", $i_date);
+			
+			
+			$date = explode("-", $i_date);
+			$date1 = format_back_date($date[0]);
+			$date2 = format_back_date($date[1]);
+			
+			$i_owner_id = get_isset($_GET['owner']);
+			
+			$query_item = select_detail($date1, $date2, $i_owner_id);
+			
+			//fungsi backup
+			$datetime1 = new DateTime($date1);
+			$datetime2 = new DateTime($date2);
+			$difference = $datetime1->diff($datetime2);
+			//echo $difference->days;
+			
+			/*$sel = abs(strtotime($date2)-strtotime($date1));
+			$selisih= $sel /(60*60*24);*/
+			
+			$jumlah_hari = $difference->days + 1;
+			$jumlah_truk = get_jumlah_truk($date1, $date2, $i_owner_id);
+			$jumlah_pengiriman = get_jumlah_pengiriman($date1, $date2, $i_owner_id);
+			$jumlah_volume = (get_jumlah_volume($date1, $date2, $i_owner_id)) ? get_jumlah_volume($date1, $date2, $i_owner_id) : 0;
+			$jumlah_volume = str_replace(".",",", $jumlah_volume);
+			
+			$total_jasa_angkut = get_total_jasa_angkut($date1, $date2, $i_owner_id);
+			$total_jasa_angkut = intval($total_jasa_angkut);
+			$total_jasa_angkut = str_replace(".",",", $total_jasa_angkut);
+			$total_subsidi_tol = get_total_subsidi_tol($date1, $date2, $i_owner_id);
+			$total_harga_urukan = get_total_harga_urukan($date1, $date2, $i_owner_id);
+			$total_hpp = get_total_hpp($date1, $date2, $i_owner_id);
+			
+			include '../views/report/report_detail_pdf.php';
+	
 	break;
 	
 	
