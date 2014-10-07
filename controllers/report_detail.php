@@ -48,8 +48,17 @@ switch ($page) {
 			
 			$query_item = select_detail($date1, $date2, $i_owner_id);
 			
-			$selisih=(strtotime($date2)-strtotime($date1))/(60*60*24);
-			$jumlah_hari = $selisih + 1;
+			//fungsi backup
+
+			$datetime1 = new DateTime($date1);
+			$datetime2 = new DateTime($date2);
+			$difference = $datetime1->diff($datetime2);
+			//echo $difference->days;
+			
+			/*$sel = abs(strtotime($date2)-strtotime($date1));
+			$selisih= $sel /(60*60*24);*/
+			
+			$jumlah_hari = $difference->days + 1;
 			$jumlah_truk = get_jumlah_truk($date1, $date2, $i_owner_id);
 			$jumlah_pengiriman = get_jumlah_pengiriman($date1, $date2, $i_owner_id);
 			$jumlah_volume = (get_jumlah_volume($date1, $date2, $i_owner_id)) ? get_jumlah_volume($date1, $date2, $i_owner_id) : 0;
@@ -126,15 +135,23 @@ switch ($page) {
 			
 			$query_item = select_detail($date1, $date2, $i_owner_id);
 			
-			$selisih=(strtotime($date2)-strtotime($date1))/(60*60*24);
-			$jumlah_hari = $selisih + 1;
+			//fungsi backup
+			$datetime1 = new DateTime($date1);
+			$datetime2 = new DateTime($date2);
+			$difference = $datetime1->diff($datetime2);
+			//echo $difference->days;
+			
+			/*$sel = abs(strtotime($date2)-strtotime($date1));
+			$selisih= $sel /(60*60*24);*/
+			
+			$jumlah_hari = $difference->days + 1;
 			$jumlah_truk = get_jumlah_truk($date1, $date2, $i_owner_id);
 			$jumlah_pengiriman = get_jumlah_pengiriman($date1, $date2, $i_owner_id);
 			$jumlah_volume = (get_jumlah_volume($date1, $date2, $i_owner_id)) ? get_jumlah_volume($date1, $date2, $i_owner_id) : 0;
 			$jumlah_volume = str_replace(".",",", $jumlah_volume);
 			
-			
 			$total_jasa_angkut = get_total_jasa_angkut($date1, $date2, $i_owner_id);
+			$total_jasa_angkut = str_replace(".",",", $total_jasa_angkut);
 			$total_subsidi_tol = get_total_subsidi_tol($date1, $date2, $i_owner_id);
 			$total_harga_urukan = get_total_harga_urukan($date1, $date2, $i_owner_id);
 			$total_hpp = get_total_hpp($date1, $date2, $i_owner_id);

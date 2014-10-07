@@ -1,10 +1,10 @@
 <?php echo $format; ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td align="center" style="font-size:32px; font-weight:bold;" colspan="4">Laporan Harian </td>
+    <td align="center" style="font-size:32px; font-weight:bold;" colspan="12">Laporan Harian </td>
   </tr>
   <tr>
-    <td align="center" style="font-size:22px; font-weight:bold;"  colspan="4"><?= $date ?></td>
+    <td align="center" style="font-size:22px; font-weight:bold;"  colspan="12"><?= $date ?></td>
   </tr>
 </table>
 
@@ -22,7 +22,7 @@ $title = array(
 $content = array($date, $total_truk, $total_pengiriman, $total_volume);
 for($i=0; $i<=3; $i++){
 ?>
-    <th><?= $title[$i]?></th>
+    <th <?php if($i==0){ ?> colspan="2"<?php } ?> bgcolor="#dddddd"><?= $title[$i]?></th>
      <?php } ?>
   </tr>
   </thead>
@@ -30,7 +30,7 @@ for($i=0; $i<=3; $i++){
   <tr> <?php
 for($i2=0; $i2<=3; $i2++){
 ?>
-    <td style="font-size:24px;"><?= $content[$i2] ?></td>
+    <td <?php if($i2==0){ ?> colspan="2"<?php } ?> style="font-size:24px;"><?= $content[$i2] ?></td>
    <?php } ?>   
   </tr></tbody>
 
@@ -42,21 +42,21 @@ for($i2=0; $i2<=3; $i2++){
                   
                                     <table border="1" cellpadding="4" cellspacing="0" class="table table-bordered">
                                         <thead>
-                                            <tr>
-                                            <th>Total Jasa Angkut</th>
-                                                <th>Total Subsidi Tol</th>
-                                                <th>Total Harga Urukan</th>
-                                                 <th>Total HPP</th>
+                                            <tr bgcolor="#dddddd">
+                                            <th colspan="2">Total Jasa Angkut</th>
+                                                <th >Total Subsidi Tol</th>
+                                                <th >Total Harga Urukan</th>
+                                                 <th >Total HPP</th>
 												 
                                             </tr>
                                         </thead>
                                         <tbody>
                                                 
                                             <tr>
-                                            	<td><?= tool_format_number_report($total_jasa_angkut) ?></td>
-												<td><?= tool_format_number_report($total_subsidi_tol) ?></td>
-                                                <td><?= tool_format_number_report($total_harga_urukan) ?></td>
-                                                <td bgcolor="#FFFF00" style="font-weight:bold;"><?= tool_format_number_report($total_hpp) ?></td>
+                                            	<td colspan="2"><?= format_report($total_jasa_angkut) ?></td>
+												<td><?= format_report($total_subsidi_tol) ?></td>
+                                                <td ><?= format_report($total_harga_urukan) ?></td>
+                                                <td bgcolor="#FFFF00" style="font-weight:bold;"><?= format_report($total_hpp) ?></td>
 											
                        
                                                  </tr>
@@ -75,7 +75,7 @@ for($i2=0; $i2<=3; $i2++){
                 <br />
   <table border="1" cellpadding="4" cellspacing="0"  class="table table-bordered table-striped" id="example1">
                                         <thead>
-                                            <tr>
+                                            <tr bgcolor="#dddddd">
                                             <?php
                                             $nb = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 											?>
@@ -96,7 +96,7 @@ for($i2=0; $i2<=3; $i2++){
                                                    <th rowspan="2">Total Harga Urukan</th>
                                                    <th rowspan="2"> HPP<?= $nb?></th>
                                             </tr>
-                                            <tr>
+                                            <tr bgcolor="#dddddd">
                                             	<?php
                                                 for($i_v=1; $i_v<=$max_vol; $i_v++){
 												?>
@@ -129,7 +129,10 @@ for($i2=0; $i2<=3; $i2++){
 												while($r_vol = mysql_fetch_array($q_vol)){
 												?>
                                                 
-                                                <td><?= $r_vol['truck_volume'] ?></td>
+                                                <td><?php $vol_no = $r_vol['truck_volume']; 
+												$vol_no = str_replace(".",",",  $vol_no);
+												echo $vol_no;
+												?></td>
                                                <?php
 											   $n_vol++;
 												}
@@ -149,7 +152,10 @@ for($i2=0; $i2<=3; $i2++){
                                                 <td><?= $r_par->jumlah_rit?></td>
                                                 <td><?php
 														$jumlah_volume =  get_jumlah_volume($date, $row_item['truck_id']);
-														echo $jumlah_volume; ?></td>
+														
+														$jumlah_volume_view = str_replace(".",",",  $jumlah_volume);
+												
+														echo $jumlah_volume_view; ?></td>
                                                 <td><?= ($row_item['transaction_transport_service']); ?></td>
                                                 <td><?= ($row_item['transaction_toll_subsidy']); ?></td>
                                                 <td><?= ($row_item['transaction_land_price']); ?></td>
@@ -169,11 +175,26 @@ for($i2=0; $i2<=3; $i2++){
 													echo ($hpp);
 												?></b></td>
                                                 </tr>
+                                            
                                             <?php
 											$no_item++;
                                             }
                                             ?>
-
+											<tr bgcolor="#FFFF00">
+                                              <td colspan="<?php $new_col = $max_vol + 10; echo $new_col; ?>" align="right"><strong>TOTAL</strong></td>
+                                              <td><strong>
+                                              <?= ($total_jasa_angkut) ?>
+                                              </strong></td>
+                                              <td><strong>
+                                              <?= ($total_subsidi_tol) ?>
+                                              </strong></td>
+                                              <td><strong>
+                                              <?= ($total_harga_urukan) ?>
+                                              </strong></td>
+                                              <td><strong><span style="font-weight:bold;">
+                                                <?= ($total_hpp) ?>
+                                              </span></strong></td>
+                                            </tr>
                                            
                                           
                                         </tbody>
