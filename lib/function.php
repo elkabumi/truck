@@ -146,6 +146,10 @@ function tool_format_number_report($data){
 	$data = "<div style='text-align:right; font-size:26px;'>".$data."</div>";
 	return $data;
 }
+function format_report($data){
+	$data = "<div style='text-align:right; font-size:26px;'>".$data."</div>";
+	return $data;
+}
 
 
 ?>
