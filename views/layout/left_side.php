@@ -86,7 +86,7 @@
                             <ul class="treeview-menu">
                                 
                                 <li><a href="report_summary.php?page=list"><i class="fa fa-angle-double-right"></i> Harian</a></li>
-                                <li><a href="report_detail.php?page=list"><i class="fa fa-angle-double-right"></i> Detail</a></li>
+                                <li><a href="report_detail.php?page=list"><i class="fa fa-angle-double-right"></i> Range Tanggal</a></li>
                              
                             </ul>
                   </li>

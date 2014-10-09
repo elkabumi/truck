@@ -4,7 +4,7 @@ include '../lib/function.php';
 include '../models/report_detail_model.php';
 $page = null;
 $page = (isset($_GET['page'])) ? $_GET['page'] : "list";
-$title = ucfirst("Report Detail");
+$title = ucfirst("Report Range Tanggal");
 
 $_SESSION['menu_active'] = 3;
 

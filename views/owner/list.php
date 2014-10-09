@@ -69,7 +69,7 @@
                                                 <th>Nama</th>
                                                 <th>Telepon</th>
                                                 <th>Alamat</th>
-                                                <th>Keterangan</th>
+                                                <th>Tipe</th>
                                                 <th>Jasa Angkut</th>
                                                 <th>Subsidi Tol</th>
                                                 <th>Harga Tanah</th>
@@ -80,13 +80,14 @@
                                             <?php
                                            $no = 1;
                                             while($row = mysql_fetch_array($query)){
+												$tipe = array('', 'Transport', 'Tanah');
                                             ?>
                                             <tr>
                                             <td><?= $no ?></td>
                                                 <td><?= $row['owner_name']?></td>
                                                 <td><?= $row['owner_phone']?></td>
                                                 <td><?= $row['owner_address']?></td>
-                                                <td><?= $row['owner_description']?></td>
+                                                <td><?= $tipe[$row['owner_type_id']]?></td>
                                                 <td><?= tool_format_number($row['transport_service']) ?></td>
                                                 <td><?= tool_format_number($row['toll_subsidy'])?></td>
                                                 <td><?= tool_format_number($row['land_price'])?></td>

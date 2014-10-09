@@ -40,6 +40,7 @@ switch ($page) {
 			$row->transport_service = false;
 			$row->toll_subsidy = false;
 			$row->land_price = false;
+			$row->owner_type_id = false;
 
 			$action = "owner.php?page=save";
 		}
@@ -59,9 +60,10 @@ switch ($page) {
 		$i_transport_service = get_isset($i_transport_service);
 		$i_toll_subsidy = get_isset($i_toll_subsidy);
 		$i_land_price = get_isset($i_land_price);
+		$i_owner_type_id = get_isset($i_owner_type_id);
 
 
-		$data = "'','$i_owner_name', '$i_owner_phone', '$i_owner_address', '$i_owner_description','$i_transport_service','$i_toll_subsidy','$i_land_price'";
+		$data = "'','$i_owner_name', '$i_owner_phone', '$i_owner_address', '$i_owner_description','$i_transport_service','$i_toll_subsidy','$i_land_price', '$i_owner_type_id'";
 
 		create($data);
 
@@ -82,6 +84,7 @@ switch ($page) {
 		$i_transport_service = get_isset($i_transport_service);
 		$i_toll_subsidy = get_isset($i_toll_subsidy);
 		$i_land_price = get_isset($i_land_price);
+		$i_owner_type_id = get_isset($i_owner_type_id);
 
 
 		$data = " owner_name = '$i_owner_name',
@@ -90,7 +93,9 @@ switch ($page) {
 				owner_description = '$i_owner_description',
 				transport_service = $i_transport_service,
 				toll_subsidy = $i_toll_subsidy,
-				land_price = $i_land_price";
+				land_price = $i_land_price,
+				owner_type_id = $i_owner_type_id
+				";
 
 		update($data, $id);
 
