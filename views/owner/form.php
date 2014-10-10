@@ -35,7 +35,15 @@
                                             <input required type="text" name="i_owner_name" class="form-control" placeholder="Enter ..." value="<?= $row->owner_name ?>"/>
                                         </div>
                                         
-                                         <div class="form-group">Telepon
+                                         <div class="form-group">
+                                          <label>Type</label>
+                                           <select name="i_owner_type_id" size="1" class="form-control"/>
+                                             <option value="1" <?php if($row->owner_type_id == 1){ ?> selected="selected"<?php }?>>Transport</option>
+                                           <option value="2" <?php if($row->owner_type_id == 2){ ?> selected="selected"<?php }?>>Tanah</option>       
+                                           </select>                                    
+                                  		</div>
+                                        
+                                         <div class="form-group"><label>Telepon</label>
                                            <input required type="text" name="i_owner_phone" class="form-control" placeholder="Enter ..." value="<?= $row->owner_phone ?>"/>
                                         </div>
                                         

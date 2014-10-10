@@ -47,7 +47,7 @@
                                         </div>
                                          <div class="form-group">
                                             <label>Nama sopir</label>
-                                            <input required type="text" name="i_sopir"  class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_driver   ?>"/>
+                                            <input required type="text" name="i_sopir"  class="form-control" placeholder="Enter ..." value=""/>
                                             
                                         </div>
 
