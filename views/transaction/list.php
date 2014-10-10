@@ -89,8 +89,14 @@
                                                 <td><?= $row['owner_name']?></td>
                                                
                                                 <td style="text-align:center;">
-                                            
+                                            <?	if(isset($_GET['type']) == '1'){
+											?>
+                                                <a href="edit_transaction.php?page=form&id=<?= $row['truck_id']; ?>" class="btn btn-primary" ><i class="fa fa-pencil"></i></a></td>		
+											<?
+												}else{
+												?>
                                                 <a href="transaction.php?page=form&id=<?= $row['truck_id']; ?>" class="btn btn-primary" ><i class="fa fa-pencil"></i></a></td>
+                                                <? } ?>
                                             </tr>
                                             <?php
 											$no++;
@@ -102,7 +108,11 @@
                                         </tbody>
                                           <tfoot>
                                             <tr>
-                                                <th colspan="7"><a href="<?= $add_truck ?>" class="btn btn-primary" >Add</a></th>
+                                                <th colspan="7"><a href="<?= $add_truck ?>" class="btn btn-primary" >Add</a>
+                                                <?php if(isset($_GET['type']) == '1'){
+													?>
+												<a href="<?= $close ?>" class="btn btn-primary" >Close</a>	
+												<?php } ?></th>
                                                 
                                             </tr>
                                         </tfoot>
