@@ -55,7 +55,50 @@ switch ($page) {
 		get_footer();
 	break;
 
+	case 'form':
+		get_header();
 
+		$close_button = "transaction.php?page=list&type=1";
+
+		$id = (isset($_GET['id'])) ? $_GET['id'] : null;
+		
+			$row = read_id_truck($id);
+			
+		
+
+		
+		
+		
+			$action = "edit_transaction.php?page=save";
+			include '../views/edit_transaction/form_add.php';
+		
+		get_footer();
+	break;
+	
+	case 'save':
+		extract($_POST);
+		
+		$get_data_config = get_data_config($i_id);
+		
+		$date_time =  format_back_date($i_date);
+		$user_id = $_SESSION['user_id'];
+		$i_volume = $i_p * $i_l * $i_t;
+		$hpp = $i_volume * $get_data_config['transport_service'];
+		$total_hpp = $hpp + $get_data_config['toll_subsidy'] + $get_data_config['land_price'];
+		
+		
+		
+		$data = "'','$i_id', '$i_nopol', '$i_volume', '$date_time','$user_id','$i_description', '".$get_data_config['transport_service']."', '".$get_data_config['toll_subsidy']."', '".$get_data_config['land_price']."', '$total_hpp',
+		'$i_hour', '$i_p', '$i_l', '$i_t','$i_sopir'
+		";
+		
+		
+		create($data);
+
+		header('Location: transaction.php?page=list&type=1&did=1');
+
+	
+	break;
 
 	case 'form_result':
 		

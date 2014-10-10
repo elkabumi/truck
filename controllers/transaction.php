@@ -19,12 +19,13 @@ switch ($page) {
 		$query = select();
 	
 		$add_truck  = "truck.php?page=form&type=2";
-		if(isset($_GET['type']) == '1'){
+		$close  = "edit_transaction.php?page=list";
+		
 			
 		
 			$add_button = "transaction.php?page=form";
 			
-		}
+		
 		include '../views/transaction/list.php';
 		get_footer();
 	break;
@@ -45,7 +46,7 @@ switch ($page) {
 		
 			$action = "transaction.php?page=save";
 			include '../views/transaction/form.php';
-		}
+		
 		get_footer();
 	break;
 

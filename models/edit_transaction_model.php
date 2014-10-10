@@ -30,6 +30,16 @@ function read_id($date1,$date2,$id){
 	return $query;
 
 }
+
+function read_id_truck($id){
+	$query = mysql_query("select a.*, b.owner_name
+							from trucks a
+						join owners b on b.owner_id = a.owner_id
+						where a.truck_id = '$id'");
+	$result = mysql_fetch_object($query);
+	return $result;
+}
+
 function read_trainer_view($id){
 	$query = mysql_query("select a.*, b.*, c.city_name
 							from transaction_trainers a
@@ -58,5 +68,19 @@ $query = mysql_query("select a.*, c.owner_name ,b.truck_code
 function update($data,$id){
 	mysql_query("UPDATE transactions SET $data WHERE transaction_id=$id");
 }
+function get_data_config($id){
+	$query = mysql_query("select owner_id from trucks where truck_id = '$id'");
+	$row = mysql_fetch_array($query);
+	
+	$query_config = mysql_query("select * from owners where owner_id = '".$row['owner_id']."'");
+	$row_config = mysql_fetch_array($query_config);
+	
+	return $row_config;
+}
+function create($data){
+	
+	mysql_query("insert into transactions values(".$data.")");
+}
+
 
 ?>
