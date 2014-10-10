@@ -62,7 +62,7 @@
                                             <tr>
                                             <td><?= $no_item ?></td>
 												<td><?= $row_item['tanggal_transaksi']; ?></td>
-                                                <td><?= get_hour($row_item['transaction_date']); ?></td>
+                                                <td><?= $row_item['transaction_hour']; ?></td>
                                                 <td><?= $row_item['truck_nopol']?></td>
 												<td><?php echo $row_item['truck_p']."". $row_item['truck_l']."". $row_item['truck_t']; ?></td>
                                                 <td><?= $row_item['volume']?></td>

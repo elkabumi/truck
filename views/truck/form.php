@@ -85,11 +85,13 @@
                                             <label>Tinggi (m)</label>
                                             <input required type="text" name="i_truck_t" class="form-control" placeholder="Enter ..." value="<?= $row->truck_t ?>"/>
                                         </div>
-                                        
+                                        <? if($id  != ''){
+											?>
                                          <div class="form-group">
                                             <label>Volume (m3)</label>
-                                            <input required type="text" name="i_truck_volume" class="form-control" placeholder="Enter ..." value="<?= $row->truck_volume ?>"/>
+                                            <input required type="text" readonly="readonly"  name="i_truck_volume" class="form-control" placeholder="Enter ..." value="<?= $row->truck_volume ?>"/>
                                         </div>
+                                        <? } ?>
                                      	
                                    
                                         

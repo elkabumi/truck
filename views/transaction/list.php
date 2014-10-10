@@ -90,7 +90,7 @@
                                                
                                                 <td style="text-align:center;">
                                             
-                                                <a href="javascript:void(0)" onclick="confirm_transaction(<?= $row['truck_id']; ?>,'transaction.php?page=form&id=','<?= $row['truck_nopol'];?>')" class="btn btn-primary" ><i class="fa fa-pencil"></i></a></td>
+                                                <a href="transaction.php?page=form&id=<?= $row['truck_id']; ?>" class="btn btn-primary" ><i class="fa fa-pencil"></i></a></td>
                                             </tr>
                                             <?php
 											$no++;

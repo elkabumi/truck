@@ -74,8 +74,14 @@
                                         </div>
 										<div class="form-group">
                                             <label>Volume (m3)</label>
-                                            <input required type="text" name="i_volume" class="form-control" placeholder="Enter ..." value="<?= $row->truck_volume  ?>"/>
+                                            <input required type="text" name="i_volume" readonly="readonly"  class="form-control" placeholder="Enter ..." value="<?= $row->truck_volume  ?>"/>
+                                                        
+                                                 <input  type="hidden" name="i_service"  class="form-control" placeholder="Enter ..." value="<?php echo $row-> transaction_transport_service 	   ?>"/>
+                                                      <input  type="hidden" name="i_toll"  class="form-control" placeholder="Enter ..." value="<?php echo $row->  	transaction_toll_subsidy 	 	   ?>"/>
+                         
+                             <input  type="hidden" name="i_land"  class="form-control" placeholder="Enter ..." value="<?php echo $row->  	transaction_land_price 	 	   ?>"/>
                                         </div>
+                                        
                                         <!-- textarea -->
                                         <div class="form-group">
                                             <label>Keterangan</label>

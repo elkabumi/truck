@@ -50,7 +50,17 @@
                                             <input required type="text" name="i_sopir"  class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_driver   ?>"/>
                                             
                                         </div>
-
+	      <div class="form-group">
+                                        <label>Date</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" required class="form-control pull-right" id="reservation" name="i_date" value="<?= $date_default?>"/>
+                                        </div><!-- /.input group -->
+                                    </div><!-- /.form group -->
+                                    
+                                    
          <div class="bootstrap-timepicker">
                                          <div class="form-group">
                                             <label>Jam</label>

@@ -69,16 +69,17 @@ switch ($page) {
 		$get_code = cek_code($i_truck_code);
 		if($get_nopol > 0){ 
 			header('Location: truck.php?page=form&did=1');
-		}if($get_code > 0){
-			header('Location: truck.php?page=form&did=2');
 		}
+		/*if($get_code > 0){
+			header('Location: truck.php?page=form&did=2');
+		}*/
 		
 		else{
 			
 		$i_truck_p = get_isset($i_truck_p);
 		$i_truck_l = get_isset($i_truck_l);
 		$i_truck_t = get_isset($i_truck_t);
-		$i_truck_volume = get_isset($i_truck_volume);
+		$i_truck_volume = $i_truck_p * $i_truck_l * $i_truck_t;
 		$i_owner_id = get_isset($i_owner_id);
 		$i_truck_description = get_isset($i_truck_description);
 		
@@ -107,7 +108,7 @@ switch ($page) {
 		$i_truck_p = get_isset($i_truck_p);
 		$i_truck_l = get_isset($i_truck_l);
 		$i_truck_t = get_isset($i_truck_t);
-		$i_truck_volume = get_isset($i_truck_volume);
+		$i_truck_volume = $i_truck_p * $i_truck_l * $i_truck_t;
 		$i_owner_id = get_isset($i_owner_id);
 		$i_truck_description = get_isset($i_truck_description);
 

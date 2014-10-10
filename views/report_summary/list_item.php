@@ -53,7 +53,7 @@
                                             <tr>
                                             <td><?= $no_item ?></td>
 											
-                                                <td><?= get_hour($row_item['transaction_date']); ?></td>
+                                                <td><?= $row_item['transaction_hour']; ?></td>
                                                 <td><?= $row_item['truck_code']; ?></td>
                                                 <td><?= $row_item['truck_nopol']?></td>
                                                 <td><?= $row_item['owner_name']?></td>

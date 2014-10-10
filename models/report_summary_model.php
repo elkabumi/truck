@@ -6,7 +6,7 @@ function select_summary($date, $i_owner_id){
 	$query = mysql_query("SELECT DATE_FORMAT(b.transaction_date,'%d-%m-%Y') AS tanggal_transaksi, a.truck_code, a.truck_id, a.truck_p, a.truck_l, a.truck_t,a.owner_id, b . * , c.owner_name
 							
 							FROM trucks a
-							JOIN (SELECT transaction_id AS id_trans, truck_nopol,transaction_date, transaction_transport_service,
+							JOIN (SELECT transaction_id AS id_trans, truck_nopol,transaction_date, transaction_transport_service,transaction_hour,
 							transaction_toll_subsidy, transaction_land_price
 									FROM transactions h
 									WHERE h.truck_nopol = truck_nopol

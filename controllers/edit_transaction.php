@@ -26,6 +26,7 @@ switch ($page) {
 		}
 		
 		$action = "edit_transaction.php?page=form_result&preview=1";
+		$add_button = "transaction.php?page=list&type=1";
 		
 		include '../views/edit_transaction/form.php';
 		
@@ -53,6 +54,8 @@ switch ($page) {
 		
 		get_footer();
 	break;
+
+
 
 	case 'form_result':
 		
@@ -127,22 +130,27 @@ switch ($page) {
 			
 		
 			extract($_POST);
-	
-			$i_volume = get_isset($i_volume);
+			
+			
 			$i_description = get_isset($i_description);
 			$i_sopir = get_isset($i_sopir);
 			$i_panjang = get_isset($i_panjang);
 			$i_lebar = get_isset($i_lebar);
 			$i_tinngi = get_isset($i_tinngi);
 			$i_jam = get_isset($i_jam);
-	
+			$i_volume = $i_panjang * $i_lebar * $i_tinngi;
+			
+			$hpp = $i_volume * $i_service;
+			$total_hpp = $hpp + $i_toll + $i_land;
+			
 			$data = "truck_volume = '$i_volume',
 					 transaction_description = '$i_description',
 					 truck_p = '$i_panjang',
 					 truck_l = '$i_lebar',
 					 truck_t = '$i_tinngi',
 					 transaction_hour = '$i_jam',
-					 truck_driver = '$i_sopir'";
+					 truck_driver = '$i_sopir',
+					 transaction_hpp = '$total_hpp'";
 				
 		update($data, $id_trans);
 			
