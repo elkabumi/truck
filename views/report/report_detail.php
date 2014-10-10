@@ -4,7 +4,7 @@
     <td align="center" style="font-size:32px; font-weight:bold;" colspan="12">Laporan Detail </td>
   </tr>
   <tr>
-    <td align="center" style="font-size:22px; font-weight:bold;"  colspan="12"><?= $date_real ?></td>
+    <td align="center" style="font-size:22px; font-weight:bold;"  colspan="12"><?= $supplier." ( ".$date_real." )" ?></td>
   </tr>
 </table>
 
@@ -45,6 +45,7 @@ for($i2=0; $i2<=3; $i2++){
                                           <tr bgcolor="#dddddd">
                                             <th colspan="2">Total Jasa Angkut</th>
                                                 <th colspan="2">Total Subsidi Tol</th>
+                                                 <th>Total Transport</th>
                                                 <th>Total Harga Urukan</th>
                                                  <th>Total HPP</th>
 												 
@@ -55,6 +56,7 @@ for($i2=0; $i2<=3; $i2++){
                                             <tr>
                                            	  <td colspan="2"><?= format_report($total_jasa_angkut) ?></td>
 											  <td colspan="2"><?= format_report($total_subsidi_tol) ?></td>
+                                              <td><?= format_report($total_transport) ?></td>
                                                 <td><?= format_report($total_harga_urukan) ?></td>
                                                 <td bgcolor="#FFFF00" style="font-weight:bold;"><?= format_report($total_hpp) ?></td>
 											

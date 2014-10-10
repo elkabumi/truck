@@ -127,5 +127,15 @@ function get_total_hpp($date1, $date2, $owner){
 	
 }
 
+function get_data_owner($owner_id){
+	
+	$query = mysql_query("select owner_name from owners where owner_id = '$owner_id'
+						");
+	$result = mysql_fetch_object($query);
+	return $result->owner_name;
+	
+}
+
+
 
 ?>

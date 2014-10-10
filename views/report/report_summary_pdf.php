@@ -7,7 +7,7 @@ $content .= '
   </tr>
   
   <tr>
-    <td align="center" size=18 >'; $content .= $date_view; $content .='</td>
+    <td align="center" size=18 >'; $content .= $supplier." - ".$date_view; $content .='</td>
   </tr>
 </table>';
 
@@ -64,6 +64,7 @@ $content .= '
                                             <tr bgcolor="#dddddd" >
                                             <td style=bold>Total Jasa Angkut</td>
                                                 <td style=bold>Total Subsidi Tol</td>
+												<td style=bold>Total Transport</td>
                                                 <td style=bold>Total Harga Urukan</td>
                                                  <td style=bold>Total HPP</td>
 												 
@@ -74,6 +75,7 @@ $content .= '
                                             <tr>
                                             	<td align="right" size=14 >'; $content .= number_format($total_jasa_angkut,0); $content .= '</td>
 												<td align="right" size=14 >'; $content .= number_format($total_subsidi_tol,0); $content .= '</td>
+												<td align="right" size=14 >'; $content .= number_format($total_transport,0); $content .= '</td>
                                                 <td align="right" size=14 >'; $content .= number_format($total_harga_urukan,0); $content .= '</td>
                                                 <td bgcolor="#FFFF00" align="right" size=16 >';  $content .= number_format($total_hpp,0); $content .= '</td>
 											

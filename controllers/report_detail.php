@@ -65,6 +65,7 @@ switch ($page) {
 			$jumlah_volume = (get_jumlah_volume($date1, $date2, $i_owner_id)) ? get_jumlah_volume($date1, $date2, $i_owner_id) : 0;
 			$total_jasa_angkut = get_total_jasa_angkut($date1, $date2, $i_owner_id);
 			$total_subsidi_tol = get_total_subsidi_tol($date1, $date2, $i_owner_id);
+			$total_transport = $total_jasa_angkut + $total_subsidi_tol;
 			$total_harga_urukan = get_total_harga_urukan($date1, $date2, $i_owner_id);
 			$total_hpp = get_total_hpp($date1, $date2, $i_owner_id);
 			
@@ -132,11 +133,19 @@ switch ($page) {
 			$i_date = str_replace(" ","", $i_date);
 			$date_real = $_GET['date'];
 			
+			
+			
 			$date = explode("-", $i_date);
 			$date1 = format_back_date($date[0]);
 			$date2 = format_back_date($date[1]);
 			
 			$i_owner_id = get_isset($_GET['owner']);
+			
+			if($i_owner_id == 0){
+				$supplier = "All Supplier";
+			}else{
+				$supplier = get_data_owner($i_owner_id);
+			}
 			
 			$query_item = select_detail($date1, $date2, $i_owner_id);
 			
@@ -158,11 +167,13 @@ switch ($page) {
 			$total_jasa_angkut = get_total_jasa_angkut($date1, $date2, $i_owner_id);
 			$total_jasa_angkut = str_replace(".",",", $total_jasa_angkut);
 			$total_subsidi_tol = get_total_subsidi_tol($date1, $date2, $i_owner_id);
+			$total_transport = $total_jasa_angkut + $total_subsidi_tol;
 			$total_harga_urukan = get_total_harga_urukan($date1, $date2, $i_owner_id);
 			$total_hpp = get_total_hpp($date1, $date2, $i_owner_id);
 						
 			$title = 'report_detail';
-			$format = create_report($title);
+			$supplier_title = str_replace(" ","_", $supplier);
+			$format = create_report($title."_".$supplier_title."_".$i_date);
 			
 			include '../views/report/report_detail.php';
 			
@@ -180,6 +191,12 @@ switch ($page) {
 			$date2 = format_back_date($date[1]);
 			
 			$i_owner_id = get_isset($_GET['owner']);
+			
+			if($i_owner_id == 0){
+				$supplier = "All Supplier";
+			}else{
+				$supplier = get_data_owner($i_owner_id);
+			}
 			
 			$query_item = select_detail($date1, $date2, $i_owner_id);
 			
@@ -202,6 +219,7 @@ switch ($page) {
 			$total_jasa_angkut = intval($total_jasa_angkut);
 			$total_jasa_angkut = str_replace(".",",", $total_jasa_angkut);
 			$total_subsidi_tol = get_total_subsidi_tol($date1, $date2, $i_owner_id);
+			$total_transport = $total_jasa_angkut + $total_subsidi_tol;
 			$total_harga_urukan = get_total_harga_urukan($date1, $date2, $i_owner_id);
 			$total_hpp = get_total_hpp($date1, $date2, $i_owner_id);
 			

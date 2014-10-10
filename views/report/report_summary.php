@@ -4,7 +4,7 @@
     <td align="center" style="font-size:32px; font-weight:bold;" colspan="12">Laporan Harian </td>
   </tr>
   <tr>
-    <td align="center" style="font-size:22px; font-weight:bold;"  colspan="12"><?= $date ?></td>
+    <td align="center" style="font-size:22px; font-weight:bold;"  colspan="12"><?= $supplier." - ".$date_view ?></td>
   </tr>
 </table>
 
@@ -22,7 +22,7 @@ $title = array(
 $content = array($date, $total_truk, $total_pengiriman, $total_volume);
 for($i=0; $i<=3; $i++){
 ?>
-    <th <?php if($i==0){ ?> colspan="2"<?php } ?> bgcolor="#dddddd"><?= $title[$i]?></th>
+    <th  bgcolor="#dddddd"><?= $title[$i]?></th>
      <?php } ?>
   </tr>
   </thead>
@@ -30,7 +30,7 @@ for($i=0; $i<=3; $i++){
   <tr> <?php
 for($i2=0; $i2<=3; $i2++){
 ?>
-    <td <?php if($i2==0){ ?> colspan="2"<?php } ?> style="font-size:24px;"><?= $content[$i2] ?></td>
+    <td  style="font-size:24px;"><?= $content[$i2] ?></td>
    <?php } ?>   
   </tr></tbody>
 
@@ -43,9 +43,10 @@ for($i2=0; $i2<=3; $i2++){
                                     <table border="1" cellpadding="4" cellspacing="0" class="table table-bordered">
                                         <thead>
                                             <tr bgcolor="#dddddd">
-                                            <th colspan="2">Total Jasa Angkut</th>
+                                            <th >Total Jasa Angkut</th>
                                                 <th >Total Subsidi Tol</th>
-                                                <th >Total Harga Urukan</th>
+                                                <th >Total Transport</th>
+                                                <th >Total Harga Tanah</th>
                                                  <th >Total HPP</th>
 												 
                                             </tr>
@@ -53,8 +54,9 @@ for($i2=0; $i2<=3; $i2++){
                                         <tbody>
                                                 
                                             <tr>
-                                            	<td colspan="2"><?= format_report($total_jasa_angkut) ?></td>
-												<td><?= format_report($total_subsidi_tol) ?></td>
+                                            	<td ><?= format_report($total_jasa_angkut) ?></td>
+												<td ><?= format_report($total_subsidi_tol) ?></td>
+                                                <td><?= format_report($total_transport) ?></td>
                                                 <td ><?= format_report($total_harga_urukan) ?></td>
                                                 <td bgcolor="#FFFF00" style="font-weight:bold;"><?= format_report($total_hpp) ?></td>
 											
