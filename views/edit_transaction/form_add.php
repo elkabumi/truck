@@ -24,7 +24,7 @@
 
                              <form role="form" action="<?= $action?>" method="post">
 
-                            <div class="box box-danger">
+                            <div class="box box-primary">
                                 
                                
                                 <div class="box-body">
@@ -47,7 +47,7 @@
                                         </div>
                                          <div class="form-group">
                                             <label>Nama sopir</label>
-                                            <input required type="text" name="i_sopir"  class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_driver   ?>"/>
+                                            <input required type="text" name="i_sopir"  class="form-control" placeholder="Enter ..." value=""/>
                                             
                                         </div>
 	            <div class="form-group">
@@ -56,7 +56,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" required class="form-control pull-right" id="date_picker1" name="i_date" value=""/>
+                                            <input type="text" required class="form-control pull-right" id="date_picker1" name="i_date" value="<?= date("d/m/Y"); ?>"/>
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                     

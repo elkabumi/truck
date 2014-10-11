@@ -63,11 +63,6 @@ switch ($page) {
 		$id = (isset($_GET['id'])) ? $_GET['id'] : null;
 		
 			$row = read_id_truck($id);
-			
-		
-
-		
-		
 		
 			$action = "edit_transaction.php?page=save";
 			include '../views/edit_transaction/form_add.php';
@@ -122,7 +117,7 @@ switch ($page) {
 
 	
 	case 'form_detail':
-		$title = ucfirst("Report Event Detail");
+		$title = ucfirst("Report Detail");
 		get_header();
 
 

@@ -91,11 +91,11 @@
                                                 <td style="text-align:center;">
                                             <?	if(isset($_GET['type']) == '1'){
 											?>
-                                                <a href="edit_transaction.php?page=form&id=<?= $row['truck_id']; ?>" class="btn btn-primary" ><i class="fa fa-pencil"></i></a></td>		
+                                                <a href="edit_transaction.php?page=form&id=<?= $row['truck_id']; ?>" class="btn btn-primary" >Proses</a></td>		
 											<?
 												}else{
 												?>
-                                                <a href="transaction.php?page=form&id=<?= $row['truck_id']; ?>" class="btn btn-primary" ><i class="fa fa-pencil"></i></a></td>
+                                                <a href="transaction.php?page=form&id=<?= $row['truck_id']; ?>" class="btn btn-primary" >Proses</a></td>
                                                 <? } ?>
                                             </tr>
                                             <?php

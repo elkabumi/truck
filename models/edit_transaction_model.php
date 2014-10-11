@@ -20,7 +20,7 @@ function select_summary($date1, $date2,$i_owner_id){
 function read_id($date1,$date2,$id){
 	$query = mysql_query("select
 						DATE_FORMAT(b.transaction_date,'%d-%m-%Y') AS tanggal_transaksi,				
-						a.truck_p,a.truck_l,a.truck_t,b.*,c.owner_name, d.user_name,b.truck_volume AS volume
+						b.*,c.owner_name, d.user_name,b.truck_volume AS volume
 								from trucks a
 						JOIN transactions b ON a.truck_id = b.truck_id
 						JOIN owners c ON a.owner_id = c.owner_id    

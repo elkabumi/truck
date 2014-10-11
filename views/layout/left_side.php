@@ -69,6 +69,13 @@
                             <a href="transaction.php?page=list">
                                 <i class="fa fa-calendar"></i> <span>Transaksi</span> 
                         </a></li>
+                          </a></li>
+                      <?php
+					}
+					  ?>  
+                        <?
+                    if($_SESSION['user_type_id'] != '3'){
+					?>
                          <li>
                             <a href="edit_transaction.php?page=list">
                                 <i class="fa fa-calendar"></i> <span>Edit Transaksi</span> 
@@ -76,7 +83,9 @@
                       <?php
 					}
 					  ?>  
-                     
+                       <?
+                    if($_SESSION['user_type_id'] != '3'){
+					?>
                      <li class="treeview <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 3){ echo "active"; }?>">
                             <a href="#">
                                 <i class="fa fa-book"></i>
@@ -90,6 +99,9 @@
                              
                             </ul>
                   </li>
+                  <?php
+					}
+				  ?>
               
                     </ul>
                 </section>

@@ -58,9 +58,9 @@
                                        
                                      
                                             <div class="form-group">
-                                        <label>Pemilik</label>
+                                        <label>Suplier</label>
                                         <select id="basic" name="i_owner_id" class="selectpicker show-tick form-control" data-live-search="true">
-                                        <option value="0">-</option>
+                                        <option value="0">Semua Suplier</option>
                                            <?php
                                         $query_owner = mysql_query("select * from owners");
                                         while($row_owner = mysql_fetch_array($query_owner)){
