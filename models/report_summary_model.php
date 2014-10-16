@@ -6,13 +6,13 @@ function select_summary($date, $i_owner_id){
 	$query = mysql_query("SELECT DATE_FORMAT(b.transaction_date,'%d-%m-%Y') AS tanggal_transaksi, a.truck_code, a.truck_id, a.truck_p, a.truck_l, a.truck_t,a.owner_id, b . * , c.owner_name
 							
 							FROM trucks a
-							JOIN (SELECT transaction_id AS id_trans, truck_nopol,transaction_date, transaction_transport_service,transaction_hour,
+							JOIN (SELECT truck_id,transaction_id AS id_trans, truck_nopol,transaction_date, transaction_transport_service,transaction_hour,
 							transaction_toll_subsidy, transaction_land_price
 									FROM transactions h
-									WHERE h.truck_nopol = truck_nopol
+									WHERE h.truck_id = truck_id
 									AND h.transaction_date LIKE '$date%'
-									GROUP BY truck_nopol
-							) AS b ON b.truck_nopol = a.truck_nopol
+									GROUP BY truck_id
+							) AS b ON b.truck_id = a.truck_id
 							JOIN owners c ON a.owner_id = c.owner_id
 							$parameter ");
 	return $query;
@@ -36,12 +36,12 @@ function get_max_vol($date, $i_owner_id){
 	$parameter = ($i_owner_id == 0) ? "" : " WHERE a.owner_id = $i_owner_id ";
 	$query = mysql_query("SELECT max(b.jumlah_truk) as max_vol
 							FROM trucks a
-							JOIN (SELECT truck_nopol, count(truck_nopol) as jumlah_truk
+							JOIN (SELECT truck_id, count(truck_id) as jumlah_truk
 									FROM transactions h
-									WHERE h.truck_nopol = truck_nopol
+									WHERE h.truck_id = truck_id
 									AND h.transaction_date LIKE '$date%'
-									GROUP BY truck_nopol
-							) AS b ON b.truck_nopol = a.truck_nopol	
+									GROUP BY truck_id
+							) AS b ON b.truck_id = a.truck_id	
 							$parameter
 							");
 	$row = mysql_fetch_object($query);
@@ -61,16 +61,16 @@ function get_jumlah_volume($date, $truck_id){
 
 function get_total_truk($date, $owner){
 	$parameter = ($owner == 0) ? "" : " and d.owner_id = $owner ";
-	$query = mysql_query("SELECT count(b.truck_nopol) as jumlah_truk
+	$query = mysql_query("SELECT count(b.truck_id) as jumlah_truk
 							FROM trucks a
-							JOIN (SELECT h.truck_nopol,transaction_date
+							JOIN (SELECT h.truck_id,transaction_date
 									FROM transactions h
 									JOIN trucks d ON d.truck_id = h.truck_id    
-									WHERE h.truck_nopol = d.truck_nopol
+									WHERE h.truck_id = d.truck_id
 									AND h.transaction_date like '$date%'
 									$parameter
-									GROUP BY h.truck_nopol
-							) AS b ON b.truck_nopol = a.truck_nopol
+									GROUP BY h.truck_id
+							) AS b ON b.truck_id = a.truck_id
 							 ");
 	$result = mysql_fetch_object($query);
 	return $result->jumlah_truk;

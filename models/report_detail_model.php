@@ -12,7 +12,7 @@ function select_detail($date1, $date2, $owner){
 						JOIN users d ON d.user_id = b.user_id 
 						WHERE
 						b.transaction_date >= '$date1 00:00:00' and b.transaction_date <= '$date2 23:59:59'
-						$parameter
+						$parameter ORDER BY transaction_id 	ASC
 						");
 	return $query;
 }
