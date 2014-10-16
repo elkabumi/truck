@@ -45,6 +45,7 @@
                                                 <th>Tanggal</th>
                                                 <th>Jam</th>
                                                  <th>Nopol</th>
+                                                 <th>Sopir</th>
 												  <th>P x L x T</th>
 												  <th>Volume</th>
 												  <th>Nama Pemilik</th>
@@ -66,12 +67,13 @@
 												<td><?= $row_item['tanggal_transaksi']; ?></td>
                                                 <td><?= $row_item['transaction_hour']; ?></td>
                                                 <td><?= $row_item['truck_nopol']?></td>
-												<td><?php echo $row_item['truck_p']."". $row_item['truck_l']."". $row_item['truck_t']; ?></td>
+                                                 <td><?= $row_item['truck_driver']?></td>
+												<td><?php echo $row_item['truck_p']." x ". $row_item['truck_l']." x ". $row_item['truck_t']; ?></td>
                                                 <td><?= $row_item['volume']?></td>
                                                 <td><?= $row_item['owner_name']?></td>
 												<td><?= $row_item['user_name']?></td>
                                             	<td><?= $row_item['transaction_description']?></td>
-                                            	<td><a href="edit_transaction.php?page=form_edit&id=<?=$id?>&date1=<?=$date1?>&date2=<?=$date2?>&owner=<?=$i_owner_id?>&id_trans=<?= $row_item['transaction_id']?>" class="btn btn-primary" ><i class="fa fa-pencil"></i></a></td>
+                                            	<td><a href="edit_transaction.php?page=form_edit&id=<?=$id?>&date1=<?=$date1?>&date2=<?=$date2?>&owner=<?=$owner_id?>&id_trans=<?= $row_item['transaction_id']?>" class="btn btn-primary" ><i class="fa fa-pencil"></i></a></td>
                        
                                                  </tr>
                                         
@@ -84,7 +86,7 @@
                                        </tbody>
                                           <tfoot>
                                             <tr>
-                                                <th colspan="4"><a href="<?= $close_button ?>" class="btn btn-primary" >Close</a></th>
+                                                <th colspan="10"><a href="<?= $close_button ?>" class="btn btn-primary" >Close</a></th>
                                                 
                                             </tr>
                                         </tfoot>

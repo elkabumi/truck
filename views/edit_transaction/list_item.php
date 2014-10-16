@@ -13,11 +13,13 @@
                                             <tr>
                                             <th width="5%">No</th>
                                                 <th>Tanggal</th>
-                                                <th>Jam</th>
+                                                
                                                  <th>Nopol</th>
+                                                 
 												  <th>P x L X T</th>
+                                                 
 												  <th>Nama Pemilik</th>
-												  <th>Jumlah Pengiriman</th>
+												  <th>Jumlah Rit</th>
                                                 <th width="20%">Config</th>
                                             </tr>
                                         </thead>
@@ -34,9 +36,11 @@
                                             <tr>
                                             <td><?= $no_item ?></td>
 												<td><?= $row_item['tanggal_transaksi']; ?></td>
-                                                <td><?= get_hour($row_item['transaction_date']); ?></td>
+                                               
                                                 <td><?= $row_item['truck_nopol']?></td>
+                                               
 												<td><?php echo $row_item['truck_p']." x ". $row_item['truck_l']." x ". $row_item['truck_t']; ?></td>
+                                               
                                                 <td><?= $row_item['owner_name']?></td>
 												<td><?php echo $r_par->jumlah_participant; ?></td>
                                                

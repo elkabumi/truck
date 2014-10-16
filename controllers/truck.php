@@ -48,6 +48,7 @@ switch ($page) {
 			$row->truck_volume = false;
 			$row->owner_id = false;
 			$row->truck_description = false;
+			$row->truck_code = false;
 
 			$action = "truck.php?page=save&type=$type";
 		}

@@ -78,7 +78,7 @@
                     
                     <div class="box-footer">
                                 <input class="btn btn-primary" type="submit" value="Preview"/>
-                           <a href="<?= $add_button ?>" class="btn btn-primary" >Add</a>
+                           <a href="<?= $add_button ?>" class="btn btn-primary" >Add Transaction</a>
                                 </div>
                             
                             </div><!-- /.box -->

@@ -15,6 +15,7 @@
                                                 <th>Jam</th>
                                                 <th>Kode</th>
                                                  <th>Nopol</th>
+                                                  <th>Supir</th>
 												  <th>P x L x T</th>
 												  
 												  <th>Nama Pemilik</th>
@@ -36,6 +37,7 @@
                                                 <td><?= $row_item['transaction_hour']; ?></td>
                                                  <td><?= $row_item['truck_code']?></td>
                                                 <td><?= $row_item['truck_nopol']?></td>
+                                                <td><?= $row_item['truck_driver']?></td>
 												<td><?php echo $row_item['truck_p']." x ". $row_item['truck_l']." x ". $row_item['truck_t']; ?></td>
                                                 
                                                 <td><?= $row_item['owner_name']?></td>
