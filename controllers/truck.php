@@ -81,12 +81,13 @@ switch ($page) {
 		$i_truck_l = get_isset($i_truck_l);
 		$i_truck_t = get_isset($i_truck_t);
 		$i_truck_volume = $i_truck_p * $i_truck_l * $i_truck_t;
+		$volume =substr($i_truck_volume,0,4);
 		$i_owner_id = get_isset($i_owner_id);
 		$i_truck_description = get_isset($i_truck_description);
 		
 		$type = (isset($_GET['type'])) ? $_GET['type'] : null;
 
-		$data = "'', '$i_truck_code', '$i_truck_nopol', '$i_truck_p', '$i_truck_l', '$i_truck_t', '$i_truck_volume', '$i_owner_id', '$i_truck_description'";
+		$data = "'', '$i_truck_code', '$i_truck_nopol', '$i_truck_p', '$i_truck_l', '$i_truck_t', '$volume', '$i_owner_id', '$i_truck_description'";
 		create($data);
 		if($type == 1){
 			header('Location: truck.php?page=list&did=1');
@@ -110,6 +111,7 @@ switch ($page) {
 		$i_truck_l = get_isset($i_truck_l);
 		$i_truck_t = get_isset($i_truck_t);
 		$i_truck_volume = $i_truck_p * $i_truck_l * $i_truck_t;
+		$volume =substr($i_truck_volume,0,4);
 		$i_owner_id = get_isset($i_owner_id);
 		$i_truck_description = get_isset($i_truck_description);
 
@@ -119,7 +121,7 @@ switch ($page) {
 				truck_p = '$i_truck_p', 
 				truck_l = '$i_truck_l', 
 				truck_t = '$i_truck_t', 
-				truck_volume = '$i_truck_volume', 
+				truck_volume = '$volume', 
 				owner_id = '$i_owner_id', 
 				truck_description = '$i_truck_description'";
 

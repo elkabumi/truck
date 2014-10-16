@@ -59,15 +59,16 @@ switch ($page) {
 		$date_time = date('Y-m-d h:i:s');
 		$user_id = $_SESSION['user_id'];
 		$i_volume = $i_p * $i_l * $i_t;
-		$hpp = $i_volume * $get_data_config['transport_service'];
+		$volume = substr($i_volume,0,4);
+		$hpp = $volume * $get_data_config['transport_service'];
 		$total_hpp = $hpp + $get_data_config['toll_subsidy'] + $get_data_config['land_price'];
+	
+	
 		
-		
-		
-		$data = "'','$i_id', '$i_nopol', '$i_volume', '$date_time','$user_id','$i_description', '".$get_data_config['transport_service']."', '".$get_data_config['toll_subsidy']."', '".$get_data_config['land_price']."', '$total_hpp',
+		$data = "'','$i_id', '$i_nopol', '$volume', '$date_time','$user_id','$i_description', '".$get_data_config['transport_service']."', '".$get_data_config['toll_subsidy']."', '".$get_data_config['land_price']."', '$total_hpp',
 		'$i_hour', '$i_p', '$i_l', '$i_t','$i_sopir'
 		";
-		
+	
 		
 		create($data);
 
