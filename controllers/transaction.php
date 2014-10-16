@@ -59,7 +59,7 @@ switch ($page) {
 		$date_time = date('Y-m-d h:i:s');
 		$user_id = $_SESSION['user_id'];
 		$i_volume = $i_p * $i_l * $i_t;
-		$volume = substr($i_volume,0,4);
+		$volume = format_volume($i_volume);
 		$hpp = $volume * $get_data_config['transport_service'];
 		$total_hpp = $hpp + $get_data_config['toll_subsidy'] + $get_data_config['land_price'];
 	
