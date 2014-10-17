@@ -23,7 +23,12 @@ function get_isset($data){
 	$result = (isset($data)) ? $data : null;
 	return $result;
 }
-
+function format_volume($i_truck_volume){
+	$volume = explode(".", $i_truck_volume);
+	$volume[1] =substr($volume[1],0,2);
+	$volume = $volume[0].".".$volume[1];
+	return $volume;	
+}
 function format_date($date){
 
 	$date = explode("-", $date);

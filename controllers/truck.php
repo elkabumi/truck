@@ -81,7 +81,8 @@ switch ($page) {
 		$i_truck_l = get_isset($i_truck_l);
 		$i_truck_t = get_isset($i_truck_t);
 		$i_truck_volume = $i_truck_p * $i_truck_l * $i_truck_t;
-		$volume =substr($i_truck_volume,0,4);
+		$volume = format_volume($i_truck_volume);
+	
 		$i_owner_id = get_isset($i_owner_id);
 		$i_truck_description = get_isset($i_truck_description);
 		
@@ -111,7 +112,7 @@ switch ($page) {
 		$i_truck_l = get_isset($i_truck_l);
 		$i_truck_t = get_isset($i_truck_t);
 		$i_truck_volume = $i_truck_p * $i_truck_l * $i_truck_t;
-		$volume =substr($i_truck_volume,0,4);
+		$volume = format_volume($i_truck_volume);
 		$i_owner_id = get_isset($i_owner_id);
 		$i_truck_description = get_isset($i_truck_description);
 
