@@ -63,6 +63,7 @@ switch ($page) {
 		$id = (isset($_GET['id'])) ? $_GET['id'] : null;
 		
 			$row = read_id_truck($id);
+			$date_config = format_date(get_date_config());
 		
 			$action = "edit_transaction.php?page=save";
 			include '../views/edit_transaction/form_add.php';

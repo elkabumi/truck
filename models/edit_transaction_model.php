@@ -82,5 +82,13 @@ function create($data){
 	mysql_query("insert into transactions values(".$data.")");
 }
 
+function get_date_config(){
+	$query_config = mysql_query("select transaction_date from configs");
+	$row_config = mysql_fetch_array($query_config);
+	
+	return $row_config['transaction_date'];
+	
+}
+
 
 ?>

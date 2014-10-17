@@ -9,15 +9,7 @@ $title = ucfirst("harga");
 $_SESSION['menu_active'] = 1;
 
 switch ($page) {
-	case 'list':
-		get_header();
-
-		$query = select();
-		$add_button = "config.php?page=form";
-
-		include '../views/config/list.php';
-		get_footer();
-	break;
+	
 	
 	case 'form':
 		get_header();
@@ -25,6 +17,7 @@ switch ($page) {
 		$close_button = "config.php?page=list";
 
 			$row = read_id();
+			$row->transaction_date = format_date($row->transaction_date);
 			$action = "config.php?page=edit";
 
 		include '../views/config/form.php';
@@ -37,12 +30,11 @@ switch ($page) {
 		extract($_POST);
 
 		$i_transport_service = get_isset($i_transport_service);
-		$i_toll_subsidy = get_isset($i_toll_subsidy);
-		$i_land_price = get_isset($i_land_price);
-
-		$data = " transport_service = '$i_transport_service',
-				toll_subsidy = '$i_toll_subsidy', 
-				land_price = '$i_land_price'";
+		$i_date = get_isset($i_date);
+		$i_date = format_back_date($i_date);
+		
+		$data = " transaction_date = '$i_date',
+				transport_service_price = '$i_transport_service'";
 
 		update($data, $id);
 

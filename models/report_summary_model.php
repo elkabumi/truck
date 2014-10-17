@@ -167,5 +167,15 @@ function get_data_owner($owner_id){
 	
 }
 
+function get_transport_service_komulatif(){
+	
+	$query = mysql_query("select * from configs
+						");
+	$result = mysql_fetch_object($query);
+	return $result->transport_service_price;
+	
+}
+
+
 
 ?>

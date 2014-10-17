@@ -56,7 +56,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" required class="form-control pull-right" id="date_picker1" name="i_date" value="<?= date("d/m/Y"); ?>"/>
+                                            <input type="text" required class="form-control pull-right" id="date_picker1" name="i_date" value="<?= $date_config; ?>"/>
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                     

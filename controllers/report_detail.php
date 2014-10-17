@@ -227,6 +227,49 @@ switch ($page) {
 	
 	break;
 	
+	case 'download_komulatif':
+	
+			$i_date = $_GET['date'];
+			$i_date = str_replace(" ","", $i_date);
+			$date_real = $_GET['date'];
+			
+			$date = explode("-", $i_date);
+			$date1 = format_back_date($date[0]);
+			$date2 = format_back_date($date[1]);
+			
+			$i_owner_id = get_isset($_GET['owner']);
+			
+			if($i_owner_id == 0){
+				$supplier = "All Supplier";
+			}else{
+				$supplier = get_data_owner($i_owner_id);
+			}
+			
+			$query_item = select_detail($date1, $date2, $i_owner_id);
+			
+			//fungsi backup
+			$datetime1 = new DateTime($date1);
+			$datetime2 = new DateTime($date2);
+			$difference = $datetime1->diff($datetime2);
+			
+			$transport_service_komulatif = get_transport_service_komulatif();
+			
+			
+			//echo $difference->days;
+			
+			/*$sel = abs(strtotime($date2)-strtotime($date1));
+			$selisih= $sel /(60*60*24);*/
+			
+			
+						
+			$title = 'report_komulatif';
+			$supplier_title = str_replace(" ","_", $supplier);
+			$format = create_report($title."_".$supplier_title."_".$i_date);
+			
+			include '../views/report/report_komulatif.php';
+			
+
+	break;
 	
 }
 

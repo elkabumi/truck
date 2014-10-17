@@ -136,6 +136,30 @@ function get_data_owner($owner_id){
 	
 }
 
+function get_volume_komulatif($date, $owner){
+	$parameter = ($owner == 0) ? "" : " and d.owner_id = $owner ";
+	$query = mysql_query("select sum(a.truck_volume) as jumlah 
+						from transactions a
+						JOIN trucks d ON d.truck_id = a.truck_id     
+						WHERE
+						transaction_date like '$date%'
+						$parameter
+						");
+	$result = mysql_fetch_object($query);
+	return $result->jumlah;
+	
+}
+
+function get_transport_service_komulatif(){
+	
+	$query = mysql_query("select * from configs
+						");
+	$result = mysql_fetch_object($query);
+	return $result->transport_service_price;
+	
+}
+
+
 
 
 ?>

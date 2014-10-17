@@ -46,21 +46,24 @@
                                
                                 <div class="box-body">
                                     
+                                        
+                                        <div class="form-group">
+                                        <label>Date</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" required class="form-control pull-right" id="date_picker1" name="i_date" value="<?= $row->transaction_date; ?>"/>
+                                        </div><!-- /.input group -->
+                                    </div><!-- /.form group -->
+                                    
                                         <!-- text input -->
                                         <div class="form-group">
                                         <label>Jasa Angkut Per Rit M3</label>
-                                          <input required type="text" name="i_transport_service" class="form-control" placeholder="Enter ..." value="<?= $row->transport_service ?>"/>
+                                          <input required type="text" name="i_transport_service" class="form-control" placeholder="Enter ..." value="<?= $row->transport_service_price ?>"/>
                                         </div>
                                         
-                                         <div class="form-group">
-                                         <label>Subsidi Tol</label>
-                                           <input required type="text" name="i_toll_subsidy" class="form-control" placeholder="Enter ..." value="<?= $row->toll_subsidy ?>"/>
-                                        </div>
                                         
-                                         <div class="form-group">
-                                            <label>Harga Tanah Per Rit Truk</label>
-                                            <input required type="text" name="i_land_price" class="form-control" placeholder="Enter ..." value="<?= $row->land_price ?>"/>
-                                        </div>
                                         
                                         
 

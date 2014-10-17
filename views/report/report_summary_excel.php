@@ -91,8 +91,8 @@
                                                 <td><?php
 														
 												
-														echo "37000"; ?></td>
-                                                <td><?= $jumlah_volume * 37000; ?></td>
+														echo $transport_service_komulatif; ?></td>
+                                                <td><?= $jumlah_volume * $transport_service_komulatif; ?></td>
                                               
                                                 </tr>
                                             
@@ -114,7 +114,7 @@
 
                                               <td>&nbsp;</td>
                                               <td><strong>
-                                              <?= ($total_vol * 37000) ?>
+                                              <?= ($total_vol * $transport_service_komulatif) ?>
                                               </strong></td>
                                               
                                             </tr>

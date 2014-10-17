@@ -217,6 +217,8 @@ switch ($page) {
 			
 			$query_item = select_summary($date, $i_owner_id);
 			
+			$transport_service_komulatif = get_transport_service_komulatif();
+			
 			$max_vol = get_max_vol($date, $i_owner_id);
 			
 			$total_truk = get_total_truk($date, $i_owner_id);

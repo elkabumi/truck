@@ -40,7 +40,7 @@
                                 
                                 <li><a href="truck.php?page=list"><i class="fa fa-angle-double-right"></i> Truk</a></li>
                                 <li><a href="owner.php?page=list"><i class="fa fa-angle-double-right"></i> Suplier</a></li>
-                             	
+                             	 <li><a href="config.php?page=form"><i class="fa fa-angle-double-right"></i> Config</a></li>
                             </ul>
                   </li>
                   
