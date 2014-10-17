@@ -202,7 +202,45 @@ switch ($page) {
 			}*/
 	break;
 	
-	
+	case 'download_tagihan_excel':
+
+			$date = get_isset($_GET['date']);
+			$date_view = $date;
+			$date = format_back_date($date);
+			$i_owner_id = get_isset($_GET['owner']);
+			
+			if($i_owner_id == 0){
+				$supplier = "All Supplier";
+			}else{
+				$supplier = get_data_owner($i_owner_id);
+			}
+			
+			$query_item = select_summary($date, $i_owner_id);
+			
+			$max_vol = get_max_vol($date, $i_owner_id);
+			
+			$total_truk = get_total_truk($date, $i_owner_id);
+			$total_pengiriman = get_total_pengiriman($date, $i_owner_id);
+			$total_volume = (get_total_volume($date, $i_owner_id)) ? get_total_volume($date, $i_owner_id) : 0;
+			$total_volume = str_replace(".",",", $total_volume);
+			
+			$total_jasa_angkut = get_total_jasa_angkut($date, $i_owner_id);
+			$total_jasa_angkut = str_replace(".",",", $total_jasa_angkut);
+			$total_subsidi_tol = get_total_subsidi_tol($date, $i_owner_id);
+			$total_transport = $total_jasa_angkut + $total_subsidi_tol;
+			$total_harga_urukan = get_total_harga_urukan($date, $i_owner_id);
+			$total_hpp = get_total_hpp($date, $i_owner_id);
+			
+			//$title = 'ABSENSI';
+			
+			$title = 'report_tagihan_';
+			$supplier_title = str_replace(" ","_", $supplier);
+			$format = create_report($title."_".$supplier_title."_".$_GET['date']);
+			
+			include '../views/report/report_summary_excel.php';
+			
+
+	break;
 	
 	
 	

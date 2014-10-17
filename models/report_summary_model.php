@@ -6,7 +6,7 @@ function select_summary($date, $i_owner_id){
 	$query = mysql_query("SELECT DATE_FORMAT(b.transaction_date,'%d-%m-%Y') AS tanggal_transaksi, a.truck_code, a.truck_id, a.truck_p, a.truck_l, a.truck_t,a.owner_id, b . * , c.owner_name
 							
 							FROM trucks a
-							JOIN (SELECT truck_id,transaction_id AS id_trans, truck_nopol,transaction_date, transaction_transport_service,transaction_hour,
+							JOIN (SELECT truck_id,transaction_id AS id_trans, truck_driver, truck_nopol,transaction_date, transaction_transport_service,transaction_hour,
 							transaction_toll_subsidy, transaction_land_price
 									FROM transactions h
 									WHERE h.truck_id = truck_id
@@ -14,11 +14,11 @@ function select_summary($date, $i_owner_id){
 									GROUP BY truck_id
 							) AS b ON b.truck_id = a.truck_id
 							JOIN owners c ON a.owner_id = c.owner_id
-							$parameter ");
+							$parameter order by b.id_trans");
 	return $query;
 }
 
-function read_id($date1,$date2,$id){
+function read_id($date1,$date2,$id){    
 	$query = mysql_query("select
 						DATE_FORMAT(b.transaction_date,'%d-%m-%Y') AS tanggal_transaksi,				
 						a.truck_p,a.truck_l,a.truck_t,b.*,c.owner_name, d.user_name,b.truck_volume AS volume
