@@ -12,22 +12,35 @@
                 </section>
                 
                  <?php
-                if(isset($_GET['err']) && $_GET['err'] == 1){
+                if(isset($_GET['did']) && $_GET['did'] == 1){
                 ?>
                 <section class="content_new">
                    
                 <div class="alert alert-danger alert-dismissable">
-                <i class="fa fa-warning"></i>
+                <i class="fa fa-check"></i>
                 <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                <b>Simpan gagal !</b>
-               Data Item masih kosong
+                <b> Sukses</b>
+             Edit Berhasil
                 </div>
            
                 </section>
                 <?php
-                }
+                }else if(isset($_GET['did']) && $_GET['did'] == 2){
 				?>
-
+				  <section class="content_new">
+                   
+                <div class="alert alert-danger alert-dismissable">
+                <i class="fa fa-warning"></i>
+                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                <b>Hapus Sukses</b>
+               Data Berhasil Dihapus
+                </div>
+           
+                </section>
+                <?
+                 }
+                ?>
+                
                 <!-- Main content -->
                 <section class="content">
               
@@ -73,7 +86,11 @@
                                                 <td><?= $row_item['owner_name']?></td>
 												<td><?= $row_item['user_name']?></td>
                                             	<td><?= $row_item['transaction_description']?></td>
-                                            	<td><a href="edit_transaction.php?page=form_edit&id=<?=$id?>&date1=<?=$date1?>&date2=<?=$date2?>&owner=<?=$owner_id?>&id_trans=<?= $row_item['transaction_id']?>" class="btn btn-primary" ><i class="fa fa-pencil"></i></a></td>
+                                            	<td><a href="edit_transaction.php?page=form_edit&id=<?=$id?>&date1=<?=$date1?>&date2=<?=$date2?>&owner=<?=$owner_id?>&id_trans=<?= $row_item['transaction_id']?>" class="btn btn-primary" ><i class="fa fa-pencil"></i></a>
+                                               
+                                                <a href="javascript:void(0)" onclick="confirm_delete(<?= $row_item['transaction_id']; ?>,'edit_transaction.php?page=delete&id=<?=$id?>&date1=<?=$date1?>&date2=<?=$date2?>&owner=<?=$owner_id?>&id_trans=')" class="btn btn-primary" ><i class="fa fa-trash-o"></i></a>
+                                                
+                                                </td>
                        
                                                  </tr>
                                         

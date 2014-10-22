@@ -23,7 +23,7 @@ switch ($page) {
 		
 			
 		
-			$add_button = "transaction.php?page=form";
+		$add_button = "transaction.php?page=form";
 			
 		
 		include '../views/transaction/list.php';
@@ -66,7 +66,7 @@ switch ($page) {
 	
 		
 		$data = "'','$i_id', '$i_nopol', '$volume', '$date_time','$user_id','$i_description', '".$get_data_config['transport_service']."', '".$get_data_config['toll_subsidy']."', '".$get_data_config['land_price']."', '$total_hpp',
-		'$i_hour', '$i_p', '$i_l', '$i_t','$i_sopir'
+		'$i_hour', '$i_p', '$i_l', '$i_t','$i_sopir',''
 		";
 	
 		

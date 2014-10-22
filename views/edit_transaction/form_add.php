@@ -82,6 +82,10 @@
                                             <label>Tinggi (m)</label>
                                             <input required type="text" name="i_t"  class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_t   ?>"/>
                                         </div>
+                                            <div class="form-group">
+                                            <label>No urut</label>
+                                            <input required type="text" name="i_t"  class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_t   ?>"/>
+                                        </div>
                             
                                        <!--
 										<div class="form-group">

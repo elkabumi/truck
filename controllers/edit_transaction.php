@@ -38,16 +38,12 @@ switch ($page) {
 					extract($_POST);
 					$i_date = get_isset($i_date);
 				}
-			$i_date = str_replace(" ","", $i_date);
+			$date = format_back_date($i_date);
 			
-			$date = explode("-", $i_date);
-			$date1 = format_back_date($date[0]);
-			$date2 = format_back_date($date[1]);
+			$query_item = select_detail($date, $i_owner_id);
+			echo $query_item ; 
+			$owner_id = get_isset($_GET['owner']);
 			
-			$i_owner_id = get_isset($_GET['owner']);
-			
-			$query_item = select_summary($date1, $date2, $i_owner_id);
-	
 			include '../views/edit_transaction/list_item.php';
 		}
 		
@@ -55,6 +51,27 @@ switch ($page) {
 		get_footer();
 	break;
 
+	case 'form_result':
+		
+
+		$id = (isset($_GET['id'])) ? $_GET['id'] : null;
+		
+		$date_default = "";
+		$date_url = "";
+		
+		//if(isset($_GET['preview'])){
+			$i_owner_id = (isset($_POST['i_owner_id'])) ? $_POST['i_owner_id'] : null;
+			extract($_POST);
+			$i_date = (isset($_POST['i_date'])) ? $_POST['i_date'] : null;
+			$date_default = $i_date;
+			$date_url = "&date=".str_replace(" ","", $i_date);
+		//}
+		
+		header("Location: edit_transaction.php?page=list&preview=1&date=$date_default&owner=$i_owner_id");
+	break;
+	
+	
+	
 	case 'form':
 		get_header();
 
@@ -97,24 +114,6 @@ switch ($page) {
 	
 	break;
 
-	case 'form_result':
-		
-
-		$id = (isset($_GET['id'])) ? $_GET['id'] : null;
-		
-		$date_default = "";
-		$date_url = "";
-		
-		//if(isset($_GET['preview'])){
-			$i_owner_id = (isset($_POST['i_owner_id'])) ? $_POST['i_owner_id'] : null;
-			extract($_POST);
-			$i_date = (isset($_POST['i_date'])) ? $_POST['i_date'] : null;
-			$date_default = $i_date;
-			$date_url = "&date=".str_replace(" ","", $i_date);
-		//}
-		
-		header("Location: edit_transaction.php?page=list&preview=1&date=$date_default&owner=$i_owner_id");
-	break;
 	
 
 	
@@ -141,33 +140,32 @@ switch ($page) {
 	
 	case 'form_edit':
 		get_header();
-			$id = (isset($_GET['id'])) ? $_GET['id'] : null;
-			$date1 = (isset($_GET['date1'])) ? $_GET['date1'] : null;
-			$date2 = (isset($_GET['date2'])) ? $_GET['date2'] : null;
+		
+			$date = (isset($_GET['date'])) ? $_GET['date'] : null;
 			$owner_id = (isset($_GET['owner'])) ? $_GET['owner'] : null;
 			$id_trans = (isset($_GET['id_trans'])) ? $_GET['id_trans'] : null;
 			
+			
 			$row = read_id2($id_trans);
-		
-				$date1 = format_back_date($date1);
-				$date2 = format_back_date($date2);
+
 			
 		
-		
-			$action = "edit_transaction.php?page=edit&id=$id&date1=$date1&date2=$date2&owner_id=$owner_id&id_trans=$id_trans";
+			$close_button = "edit_transaction.php?page=form_detail&id=$id&date1=$date1&date2=$date2&owner=$owner_id"; 	
+			
+			$action = "edit_transaction.php?page=edit&date=$date&owner_id=$owner_id&id_trans=$id_trans";
 			
 	
-			include '../views/edit_transaction/form_edit.php';
+		include '../views/edit_transaction/form_edit.php';
 		get_footer();
 	break;
 	
 	case 'edit':
-			$id = (isset($_GET['id'])) ? $_GET['id'] : null;
-			$date1 = (isset($_GET['date1'])) ? $_GET['date1'] : null;
-			$date2 = (isset($_GET['date2'])) ? $_GET['date2'] : null;
+			
+			$date = (isset($_GET['date'])) ? $_GET['date'] : null;
+			
 			$owner_id = (isset($_GET['owner'])) ? $_GET['owner'] : null;
 			$id_trans = get_isset($_GET['id_trans']);	
-			
+			$date1=format_date($date);
 		
 			extract($_POST);
 			
@@ -196,10 +194,21 @@ switch ($page) {
 		update($data, $id_trans);
 			
 				
-			header('Location: edit_transaction.php?page=form_detail&id='.$id.'&date1='.$date1.'&date2='.$date2.'&owner='.$owner_id.'');
+			header('Location: edit_transaction.php?page=list&&preview=1&date='.$date1.'&owner='.$owner_id.'&did=1');
 
 	break;
-	
+		case 'delete':
+
+		$id = get_isset($_GET['id']);		$id = (isset($_GET['id'])) ? $_GET['id'] : null;
+		$date = (isset($_GET['date'])) ? $_GET['date'] : null;
+		$owner_id = (isset($_GET['owner'])) ? $_GET['owner'] : null;
+		$id_trans = get_isset($_GET['id_trans']);
+		$date1=format_date($date);
+		delete($id_trans);
+
+		header('Location: edit_transaction.php?page=list&preview=1&date='.$date1.'&owner='.$owner_id.'&did=2');
+
+	break;
 }
 
 ?>

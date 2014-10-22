@@ -1,5 +1,4 @@
 
-
               
                     <div class="row">
                         <div class="col-xs-12">
@@ -13,47 +12,54 @@
                                             <tr>
                                             <th width="5%">No</th>
                                                 <th>Tanggal</th>
-                                                
+                                                <th>Jam</th>
+                                                <th>Kode</th>
                                                  <th>Nopol</th>
-                                                 
-												  <th>P x L X T</th>
-                                                 
+                                                  <th>Supir</th>
+												  <th>P x L x T</th>
+												  
 												  <th>Nama Pemilik</th>
-												  <th>Jumlah Rit</th>
-                                                <th width="20%">Config</th>
+                                                  <th>Volume</th>
+                                                  <th>Jasa Angkut</th>
+                                                  <th>Subsidi Tol</th>
+                                                  <th>Harga Urukan</th>
+                                                  <th>HPP</th>
+                                                   <th colspan="2">Config</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
+                                                 <?php
                                            $no_item = 1;
                                             while($row_item = mysql_fetch_array($query_item)){
-												
-											$j_par = mysql_query("select count(*) as jumlah_participant from transactions where truck_id = '".$row_item['truck_id']."' AND transaction_date >= '$date1 00:00:00'
-									AND transaction_date <= '$date2 23:59:59'");
-											$r_par = mysql_fetch_object($j_par);
-						
-                                            ?>
+                                       ?>
                                             <tr>
                                             <td><?= $no_item ?></td>
 												<td><?= $row_item['tanggal_transaksi']; ?></td>
-                                               
+                                                <td><?= $row_item['transaction_hour']; ?></td>
+                                                 <td><?= $row_item['truck_code']?></td>
                                                 <td><?= $row_item['truck_nopol']?></td>
-                                               
+                                                <td><?= $row_item['truck_driver']?></td>
 												<td><?php echo $row_item['truck_p']." x ". $row_item['truck_l']." x ". $row_item['truck_t']; ?></td>
-                                               
+                                                
                                                 <td><?= $row_item['owner_name']?></td>
-												<td><?php echo $r_par->jumlah_participant; ?></td>
+												<td><?= $row_item['volume']?></td>
+                       							<td><?= tool_format_number($row_item['volume'] * $row_item['transaction_transport_service'])?></td>
+                                                <td><?= tool_format_number($row_item['transaction_toll_subsidy'])?> </td>
+                                                <td><?= tool_format_number($row_item['transaction_land_price'])?> </td>
+                                                <td><?= tool_format_number($row_item['transaction_hpp'])?></td>
+                                                
+                                                <td><a href="edit_transaction.php?page=form_edit&date=<?=$date?>&owner=<?=$owner_id?>&id_trans=<?= $row_item['transaction_id']?>" class="btn btn-primary" ><i class="fa fa-pencil"></i></a>
                                                
-                                               
-                                                <td style="text-align:center;">
-                                                    <a href="edit_transaction.php?page=form_detail&id=<?= $row_item['truck_id']?>&date1=<?= $date1?>&date2=<?=$date2?><? if($i_owner_id != '0'){?>&owner=<?= $row_item['owner_id']?><? }else{ ?>&owner=0<? } ?>" class="btn btn-primary" >Detail</a>
+                                                <a href="javascript:void(0)" onclick="confirm_delete(<?= $row_item['transaction_id']; ?>,'edit_transaction.php?page=delete&date=<?=$date?>&owner=<?=$owner_id?>&id_trans=')" class="btn btn-primary" ><i class="fa fa-trash-o"></i></a>
+                                             
                                                  </tr>
-                                            <?php
+                                        
+
+                                              <?php
 											$no_item++;
                                             }
                                             ?>
 
-                                           
                                           
                                         </tbody>
                                          

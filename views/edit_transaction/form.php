@@ -43,8 +43,7 @@
 
                             <div class="box box-primary">
                                 
-                               
-                                <div class="box-body">
+                                                       <div class="box-body">
                                     	
                                           <div class="form-group">
                                         <label>Date</label>
@@ -52,9 +51,11 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" required class="form-control pull-right" id="reservation" name="i_date" value="<?= $date_default?>"/>
+                                            <input type="text" required class="form-control pull-right" id="date_picker1" name="i_date" value="<?= $date_default?>"/>
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
+
+                                       
                                        
                                         <div class="form-group">
                                          <label>Pemilik </label>

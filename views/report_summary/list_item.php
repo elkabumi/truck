@@ -29,7 +29,7 @@
                                                    <th rowspan="2">Total Jasa Angkut</th>
                                                    <th rowspan="2">Total Subsidi Tol</th>
                                                    <th rowspan="2">Total Harga Urukan</th>
-                                                   <th rowspan="2"> HPP<?= $nb?></th>
+                                                   <th rowspan="2"> sHPP<?= $nb?></th>
                                             </tr>
                                             <tr>
                                             	<?php
