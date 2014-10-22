@@ -13,7 +13,7 @@ function select_detail($date, $owner){
 						JOIN users d ON d.user_id = b.user_id 
 						WHERE
 						b.transaction_date LIKE '$date%'
-						$parameter ORDER BY transaction_id 	ASC
+						$parameter ORDER BY transaction_number 	ASC
 						");
 	return $query;
 }
@@ -43,21 +43,7 @@ function read_id_truck($id){
 	return $result;
 }
 
-function read_trainer_view($id){
-	$query = mysql_query("select a.*, b.*, c.city_name
-							from transaction_trainers a
-							join users b on a.user_id = b.user_id 
-							join cities c on c.city_id = b.city_id
-							where transaction_id = $id");
-	return $query;
-}
 
-function read_agent_view($id){
-	$query = mysql_query("select a.*, b.*
-							from transaction_agents a
-							join agents b on a.agent_id = b.agent_id where a.transaction_id = '$id'");
-	return $query;
-}
 function read_id2($id){
 $query = mysql_query("select a.*, c.owner_name ,b.truck_code	 	
 							from transactions a
@@ -80,9 +66,10 @@ function get_data_config($id){
 	
 	return $row_config;
 }
-function create($data){
+function create($data, $counter){
 	
 	mysql_query("insert into transactions values(".$data.")");
+	mysql_query("update configs set counter = '$counter'");
 }
 
 function get_date_config(){
@@ -92,6 +79,48 @@ function get_date_config(){
 	return $row_config['transaction_date'];
 	
 }
+
+function get_counter(){
+	$query_config = mysql_query("select counter from configs");
+	$row_config = mysql_fetch_array($query_config);
+	$result = $row_config['counter'] + 1;
+	return $result;
+}
+
+function get_number_old($id){
+	$query_config = mysql_query("select transaction_number from transactions where transaction_id = '$id'");
+	$row_config = mysql_fetch_array($query_config);
+	return $row_config['transaction_number'];
+}
+
+function get_urutan($id, $date){
+	$query_config = mysql_query("select count(transaction_number) as urutan from transactions where transaction_number <= '$id' and transaction_date like '$date%'");
+	$row_config = mysql_fetch_array($query_config);
+	return $row_config['urutan'];
+}
+
+
+function get_number_new($urutan, $date){
+	$query_config = mysql_query("select transaction_number from transactions where transaction_date like '$date%' order by transaction_number asc");
+	$i=1;
+	$number_new = "";
+	while($row_config = mysql_fetch_array($query_config)){
+			if($urutan == $i){
+				$number_new = $row_config['transaction_number'];
+			}
+		$i++;
+	}
+	return $number_new;
+}
+
+function get_urutan_max($date){
+	$query_config = mysql_query("select count(transaction_number) as urutan from transactions where transaction_date like '$date%'");
+	$row_config = mysql_fetch_array($query_config);
+	return $row_config['urutan'];
+}
+
+
+
 function delete($id){
 	mysql_query("delete from transactions  where transaction_id = '$id'");
 }

@@ -24,7 +24,7 @@
                                                   <th>Subsidi Tol</th>
                                                   <th>Harga Urukan</th>
                                                   <th>HPP</th>
-                                                   <th colspan="2">Config</th>
+                                                   <th>Config</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -51,7 +51,7 @@
                                                 <td><a href="edit_transaction.php?page=form_edit&date=<?=$date?>&owner=<?=$owner_id?>&id_trans=<?= $row_item['transaction_id']?>" class="btn btn-primary" ><i class="fa fa-pencil"></i></a>
                                                
                                                 <a href="javascript:void(0)" onclick="confirm_delete(<?= $row_item['transaction_id']; ?>,'edit_transaction.php?page=delete&date=<?=$date?>&owner=<?=$owner_id?>&id_trans=')" class="btn btn-primary" ><i class="fa fa-trash-o"></i></a>
-                                             
+                                             </td>
                                                  </tr>
                                         
 
