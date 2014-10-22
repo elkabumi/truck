@@ -50,7 +50,7 @@
                                         </div>
                                          <div class="form-group">
                                             <label>Tinggi</label>
-                                            <input required type="text" name="i_tinngi" class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_t ?>"/>
+                                            <input required type="text" name="i_tinggi" class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_t ?>"/>
                                         
                                    </div>
                          
@@ -59,6 +59,16 @@
                                             <input required type="text" name="i_sopir"  class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_driver   ?>"/>
                                             
                                         </div>
+                                        
+                                          <div class="form-group">
+                                        <label>Date</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" required class="form-control pull-right" id="date_picker1" name="i_date" value="<?= $new_date ?>"/>
+                                        </div><!-- /.input group -->
+                                    </div><!-- /.form group -->
 
          <div class="bootstrap-timepicker">
                                          <div class="form-group">

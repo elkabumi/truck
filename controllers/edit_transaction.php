@@ -147,12 +147,22 @@ switch ($page) {
 			
 			
 			$row = read_id2($id_trans);
+<<<<<<< HEAD
 
 			
 		
 			$close_button = "edit_transaction.php?page=form_detail&id=$id&date1=$date1&date2=$date2&owner=$owner_id"; 	
 			
 			$action = "edit_transaction.php?page=edit&date=$date&owner_id=$owner_id&id_trans=$id_trans";
+=======
+			$tanggal = explode(" ", $row->transaction_date);
+			$new_date = format_date($tanggal[0]);
+		
+				$date1 = format_back_date($date1);
+				$date2 = format_back_date($date2);
+		
+			$action = "edit_transaction.php?page=edit&id=$id&date1=$date1&date2=$date2&owner_id=$owner_id&id_trans=$id_trans";
+>>>>>>> c54e2a8731da77f75d0bdbfc1a1245821c5492a5
 			
 	
 		include '../views/edit_transaction/form_edit.php';
@@ -169,29 +179,32 @@ switch ($page) {
 		
 			extract($_POST);
 			
-			
+			$i_date = get_isset($i_date);
+			$i_date = format_back_date($i_date);
+			$i_date = $i_date." 00:00:00";
 			$i_description = get_isset($i_description);
 			$i_sopir = get_isset($i_sopir);
 			$i_panjang = get_isset($i_panjang);
 			$i_lebar = get_isset($i_lebar);
-			$i_tinngi = get_isset($i_tinngi);
+			$i_tinggi = get_isset($i_tinggi);
 			$i_jam = get_isset($i_jam);
-			$i_volume = $i_panjang * $i_lebar * $i_tinngi;
+			$i_volume = $i_panjang * $i_lebar * $i_tinggi;
 			
 			$volume = format_volume($i_volume);
 			$hpp = $volume * $i_service;
 			$total_hpp = $hpp + $i_toll + $i_land;
 			
 			$data = "truck_volume = '$volume',
+					 transaction_date = '$i_date',
 					 transaction_description = '$i_description',
 					 truck_p = '$i_panjang',
 					 truck_l = '$i_lebar',
-					 truck_t = '$i_tinngi',
+					 truck_t = '$i_tinggi',
 					 transaction_hour = '$i_jam',
 					 truck_driver = '$i_sopir',
 					 transaction_hpp = '$total_hpp'";
 				
-		update($data, $id_trans);
+			update($data, $id_trans);
 			
 				
 			header('Location: edit_transaction.php?page=list&&preview=1&date='.$date1.'&owner='.$owner_id.'&did=1');

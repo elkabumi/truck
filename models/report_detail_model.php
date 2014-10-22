@@ -159,6 +159,19 @@ function get_transport_service_komulatif(){
 	
 }
 
+function get_rit_komulatif($date, $owner){
+	$parameter = ($owner == 0) ? "" : " and d.owner_id = $owner ";
+	$query = mysql_query("select count(a.transaction_id) as jumlah 
+						from transactions a
+						JOIN trucks d ON d.truck_id = a.truck_id     
+						WHERE
+						transaction_date like '$date%'
+						$parameter
+						");
+	$result = mysql_fetch_object($query);
+	return $result->jumlah;
+	
+}
 
 
 
