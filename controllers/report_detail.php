@@ -179,6 +179,8 @@ switch ($page) {
 			
 
 	break;
+
+
 	
 	case 'download_pdf':
 			$i_date = $_GET['date'];
@@ -267,6 +269,61 @@ switch ($page) {
 			$format = create_report($title."_".$supplier_title."_".$i_date);
 			
 			include '../views/report/report_komulatif.php';
+			
+
+	break;
+
+        case 'download_tagihan':
+	
+			$i_date = $_GET['date'];
+			$i_date = str_replace(" ","", $i_date);
+			$date_real = $_GET['date'];
+			
+			
+			
+			$date = explode("-", $i_date);
+			$date1 = format_back_date($date[0]);
+			$date2 = format_back_date($date[1]);
+			
+			$i_owner_id = get_isset($_GET['owner']);
+			
+			if($i_owner_id == 0){
+				$supplier = "All Supplier";
+			}else{
+				$supplier = get_data_owner($i_owner_id);
+			}
+
+                        $transport_service_komulatif = get_transport_service_komulatif();
+			
+			$query_item = select_detail($date1, $date2, $i_owner_id);
+			
+			//fungsi backup
+			$datetime1 = new DateTime($date1);
+			$datetime2 = new DateTime($date2);
+			$difference = $datetime1->diff($datetime2);
+			//echo $difference->days;
+			
+			/*$sel = abs(strtotime($date2)-strtotime($date1));
+			$selisih= $sel /(60*60*24);*/
+			
+			$jumlah_hari = $difference->days + 1;
+			$jumlah_truk = get_jumlah_truk($date1, $date2, $i_owner_id);
+			$jumlah_pengiriman = get_jumlah_pengiriman($date1, $date2, $i_owner_id);
+			$jumlah_volume = (get_jumlah_volume($date1, $date2, $i_owner_id)) ? get_jumlah_volume($date1, $date2, $i_owner_id) : 0;
+			$jumlah_volume = str_replace(".",",", $jumlah_volume);
+			
+			$total_jasa_angkut = get_total_jasa_angkut($date1, $date2, $i_owner_id);
+			$total_jasa_angkut = str_replace(".",",", $total_jasa_angkut);
+			$total_subsidi_tol = get_total_subsidi_tol($date1, $date2, $i_owner_id);
+			$total_transport = $total_jasa_angkut + $total_subsidi_tol;
+			$total_harga_urukan = get_total_harga_urukan($date1, $date2, $i_owner_id);
+			$total_hpp = get_total_hpp($date1, $date2, $i_owner_id);
+						
+			$title = 'report_detail_tagihan';
+			$supplier_title = str_replace(" ","_", $supplier);
+			$format = create_report($title."_".$supplier_title."_".$i_date);
+			
+			include '../views/report/report_detail_tagihan.php';
 			
 
 	break;

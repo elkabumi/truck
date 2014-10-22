@@ -107,8 +107,8 @@
                                               <td>&nbsp;</td>
                                               <td><strong>
                                               <?php
-                                              $total_vol = str_replace(".",",",  $total_vol);
-											 echo  $total_vol; ?>
+                                              $total_vol_view = str_replace(".",",",  $total_vol);
+											 echo  $total_vol_view; ?>
                                               </strong></td>
 
 

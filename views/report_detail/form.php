@@ -85,6 +85,7 @@
                              	 <?php if(isset($_GET['preview'])){ ?><a href="report_detail.php?page=download&date=<?= $_GET['date']?>&owner=<?= $_GET['owner']?>" class="btn btn-primary" >Download Excel</a>
 								 <a href="report_detail.php?page=download_pdf&date=<?= $_GET['date']?>&owner=<?= $_GET['owner']?>" class="btn btn-primary" >Download PDF</a>
                                  <a href="report_detail.php?page=download_komulatif&date=<?= $_GET['date']?>&owner=<?= $_GET['owner']?>" class="btn btn-primary" >Download Komulatif</a>
+<a href="report_detail.php?page=download_tagihan&date=<?= $_GET['date']?>&owner=<?= $_GET['owner']?>" class="btn btn-primary" >Download Tagihan</a>
 								 <?php } ?>
                                 </div>
                             
