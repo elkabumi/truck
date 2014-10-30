@@ -24,37 +24,40 @@
 
                              <form role="form" action="<?= $action?>" method="post">
 
-                            <div class="box box-danger">
+                            <div class="box box-primary">
                                 
                                
                                 <div class="box-body">
                                     
                                         <!-- text input -->
+                                        <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Kode</label>
                                             <input required type="text" name="i_kode"readonly="readonly" class="form-control" placeholder="Enter ..." value="<?= $row->truck_code  ?>"/>
 											<input type="hidden" name="i_id" readonly="readonly" class="form-control" placeholder="Enter ..." value="<?= $row->truck_id  ?>"/>
                                         </div>
+                                        </div>
+                                        <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Nomor Polisi</label>
                                             <input required type="text" name="i_nopol"readonly="readonly" class="form-control" placeholder="Enter ..." value="<?= $row->truck_nopol  ?>"/>
 											<input type="hidden" name="i_id" readonly="readonly" class="form-control" placeholder="Enter ..." value="<?= $row->truck_id  ?>"/>
                                         </div>
-										 <div class="form-group">
-                                            <label>Panjang</label>
-                                            <input required type="text" name="i_panjang" class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_p ?>"/>
                                         </div>
-                                         <div class="form-group">
-                                            <label>Lebar</label>
-                                            <input required type="text" name="i_lebar"  class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_l ?>"/>
+                                        <div class="col-md-4">
+                                        	<div class="form-group">
+                                            <label>Nama Suplier</label>
+                                            <input required type="text" name="i_owner"  readonly="readonly" class="form-control" placeholder="Enter ..." value="<?echo $row->owner_name ?>"/>
                                         </div>
-                                         <div class="form-group">
-                                            <label>Tinggi</label>
-                                            <input required type="text" name="i_tinggi" class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_t ?>"/>
+                                        </div>
                                         
-                                   </div>
-                         
-                                      <div class="form-group">
+                                         <div class="col-md-12">
+                                            <div class="form-group">
+                                            <label>No urut</label>
+                                            <input required type="text" name="i_number"  class="form-control" placeholder="Enter ..." value="<?php echo $row->transaction_number   ?>"/>
+                                        </div>
+                                        
+                                         <div class="form-group">
                                             <label>Nama sopir</label>
                                             <input required type="text" name="i_sopir"  class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_driver   ?>"/>
                                             
@@ -66,7 +69,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" required class="form-control pull-right" id="date_picker1" name="i_date" value="<?= $new_date ?>"/>
+                                            <input type="text" required class="form-control pull-right" id="date_picker1" name="i_date" value="<?= $date ?>"/>
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
 
@@ -77,11 +80,29 @@
                                         </div>
                                 	</div>
                                   
-                             
-										<div class="form-group">
-                                            <label>Nama Pemilik</label>
-                                            <input required type="text" name="i_owner"  readonly="readonly" class="form-control" placeholder="Enter ..." value="<?echo $row->owner_name ?>"/>
                                         </div>
+                                         <div class="col-md-4">
+										 <div class="form-group">
+                                            <label>Panjang</label>
+                                            <input required type="text" name="i_panjang" class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_p ?>"/>
+                                        </div>
+                                        </div>
+                                         <div class="col-md-4">
+                                         <div class="form-group">
+                                            <label>Lebar</label>
+                                            <input required type="text" name="i_lebar"  class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_l ?>"/>
+                                        </div>
+                                        </div>
+                                         <div class="col-md-4">
+                                         <div class="form-group">
+                                            <label>Tinggi</label>
+                                            <input required type="text" name="i_tinggi" class="form-control" placeholder="Enter ..." value="<?php echo $row->truck_t ?>"/>
+                                        
+                                   </div>
+                         	</div>
+                                     
+                             
+									 <div class="col-md-12">
 										<div class="form-group">
                                             <label>Volume (m3)</label>
                                             <input required type="text" name="i_volume" readonly="readonly"  class="form-control" placeholder="Enter ..." value="<?= $row->truck_volume  ?>"/>
@@ -97,7 +118,7 @@
                                             <label>Keterangan</label>
                                             <textarea class="form-control" name="i_description" rows="3" placeholder="Enter ..."><?= $row->transaction_description  ?></textarea>
                                         </div>
-                                      
+                                      </div>
                                    
                                 </div><!-- /.box-body -->
                                 <div class="box-footer">

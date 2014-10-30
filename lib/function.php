@@ -48,7 +48,6 @@ function format_back_date($date){
 
 	$date = explode("/", $date);
 	$back_date =  $date[2]."-".$date[1]."-".$date[0];
-
 	return $back_date;
 
 }

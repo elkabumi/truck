@@ -16,9 +16,10 @@ function read_id($id){
 	return $result;
 }
 
-function create($data){
+function create($data, $counter){
 	
 	mysql_query("insert into transactions values(".$data.")");
+	mysql_query("update configs set counter = '$counter'");
 }
 
 function update($data, $id){
@@ -37,6 +38,12 @@ function get_data_config($id){
 	$row_config = mysql_fetch_array($query_config);
 	
 	return $row_config;
+}
+function get_counter(){
+	$query_config = mysql_query("select counter from configs");
+	$row_config = mysql_fetch_array($query_config);
+	$result = $row_config['counter'] + 1;
+	return $result;
 }
 
 
