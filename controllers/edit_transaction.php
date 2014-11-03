@@ -7,7 +7,8 @@ $page = (isset($_GET['page'])) ? $_GET['page'] : "list";
 $title = ucfirst("Edit Transaction");
 
 $_SESSION['menu_active'] = 3;
-
+if(function_exists('date_default_timezone_set'))
+date_default_timezone_set('Asia/Jakarta');
 switch ($page) {
 	
 	case 'list':
@@ -101,13 +102,14 @@ switch ($page) {
 		$user_id = $_SESSION['user_id'];
 		$i_volume = $i_p * $i_l * $i_t;
 		$volume = format_volume($i_volume);
+		$date_system  = date('Y-m-d h:i:s');
 		$hpp = $volume * $get_data_config['transport_service'];
 		$total_hpp = $hpp + $get_data_config['toll_subsidy'] + $get_data_config['land_price'];
 		
 		
 		
 		$data = "'','$i_id', '$i_nopol', '$volume', '$date_time','$user_id','$i_description', '".$get_data_config['transport_service']."', '".$get_data_config['toll_subsidy']."', '".$get_data_config['land_price']."', '$total_hpp',
-		'$i_hour', '$i_p', '$i_l', '$i_t','$i_sopir', '$i_number'
+		'$i_hour', '$i_p', '$i_l', '$i_t','$i_sopir', '$i_number','$date_system'
 		";
 		
 		

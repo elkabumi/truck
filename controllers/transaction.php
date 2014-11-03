@@ -38,7 +38,8 @@ switch ($page) {
 		$id = (isset($_GET['id'])) ? $_GET['id'] : null;
 		
 			$row = read_id($id);
-			
+			$counter = get_counter();
+			$row->transaction_number = $counter;
 		
 
 		
@@ -62,15 +63,15 @@ switch ($page) {
 		$volume = format_volume($i_volume);
 		$hpp = $volume * $get_data_config['transport_service'];
 		$total_hpp = $hpp + $get_data_config['toll_subsidy'] + $get_data_config['land_price'];
-	
+		$date_system  = date('Y-m-d h:i:s');	
 	
 		
 		$data = "'','$i_id', '$i_nopol', '$volume', '$date_time','$user_id','$i_description', '".$get_data_config['transport_service']."', '".$get_data_config['toll_subsidy']."', '".$get_data_config['land_price']."', '$total_hpp',
-		'$i_hour', '$i_p', '$i_l', '$i_t','$i_sopir',''
+		'$i_hour', '$i_p', '$i_l', '$i_t','$i_sopir','$i_number','$date_system'
 		";
 	
 		
-		create($data);
+		create($data, $i_number);
 
 		header('Location: transaction.php?page=list&did=1');
 
