@@ -90,7 +90,7 @@ for($i2=0; $i2<=3; $i2++){
 												  <th colspan="<?= $max_vol?>">Volume Pengiriman</th>
                                                    <th rowspan="2">Total Rit</th>
                                                    <th rowspan="2">Total Volume</th>
-                                                   <th rowspan="2">Jasa Angkut Per Rit M3</th>
+                                                   <th rowspan="2">Jasa Angkut Per  M3</th>
                                                    <th rowspan="2">Subsidi Tol</th>
                                                    <th rowspan="2">Harga Tanah Per Rit Truk</th>
                                                    <th rowspan="2">Total Jasa Angkut</th>

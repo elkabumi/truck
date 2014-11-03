@@ -16,7 +16,7 @@
     <td bgcolor="#CCCCCC"><strong>Tanggal</strong></td>
     <td bgcolor="#CCCCCC"><strong>Jumlah Rit</strong></td>
     <td bgcolor="#CCCCCC"><strong>Jumlah Volume m3</strong></td>
-    <td bgcolor="#CCCCCC"><strong>Harga per rit m3</strong></td>
+    <td bgcolor="#CCCCCC"><strong>Harga per  m3</strong></td>
     <td bgcolor="#CCCCCC"><strong>Total</strong></td>
   </tr>
   <?php

@@ -1370,6 +1370,7 @@ body > .header .logo .icon {
 .box .box-body > table,
 .box .box-body > .table {
   margin-bottom: 0;
+  overflow:scroll;
 }
 .box .box-body.chart-responsive {
   width: 100%;

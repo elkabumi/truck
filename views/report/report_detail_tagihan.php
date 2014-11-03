@@ -24,8 +24,8 @@ $nb = "&nbsp;&nbsp;&nbsp;&nbsp;";
 							 <th align="center"><?= $nb ?>L<?= $nb ?></th>					  
 							 <th align="center"><?= $nb ?>T<?= $nb ?></th>					 
                                                   <th align="center">&nbsp;Volume&nbsp;</th>
-                                                   <th>Harga Per Rit m3</th>
-<th><?= $nb ?><?= $nb ?><?= $nb ?>Total<?= $nb ?><?= $nb ?><?= $nb ?></th>
+                                                   <th>Harga Per  m3</th>
+<th><?= $nb ?><?= $nb ?>Total<?= $nb ?><?= $nb ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>
