@@ -57,9 +57,11 @@ switch ($page) {
 			$total_harga_urukan = get_total_harga_urukan($date, $i_owner_id);
 			$total_hpp = get_total_hpp($date, $i_owner_id);
 			
+                        
 			include '../views/report_summary/form_result.php';
+                        if($_SESSION['user_type_id'] != 4){
 			include '../views/report_summary/list_total.php';
-			
+			}
 			if($total_truk > 0){
 				include '../views/report_summary/list_item.php';
 			}

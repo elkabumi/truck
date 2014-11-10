@@ -4,6 +4,7 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
+
                         	<?php
                              $user_data = get_user_data();
 							if($user_data[2]==""){
@@ -27,81 +28,18 @@
                     </div>
                    
                     <!-- sidebar menu: : style can be found in sidebar.less -->
-                   <?php //if(isset($_SESSION['menu_active'])) { echo $_SESSION['menu_active']; }?>
-                    <ul class="sidebar-menu">
-                     
-                          <li class="treeview <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 1){ echo "active"; }?>">
-                            <a href="#">
-                                <i class="fa fa-bar-chart-o"></i>
-                                <span>Master</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                
-                                <li><a href="truck.php?page=list"><i class="fa fa-angle-double-right"></i> Truk</a></li>
-                                <li><a href="owner.php?page=list"><i class="fa fa-angle-double-right"></i> Suplier</a></li>
-                             	 <li><a href="config.php?page=form"><i class="fa fa-angle-double-right"></i> Config</a></li>
-                            </ul>
-                  </li>
+<?php
+if($_SESSION['user_type_id'] == 1){
+include 'menu1.php';
+}else if($_SESSION['user_type_id'] == 2){
+include 'menu2.php';
+}else if($_SESSION['user_type_id'] == 3){
+include 'menu3.php';
+}else if($_SESSION['user_type_id'] == 4){
+include 'menu4.php';
+}
+?>
                   
-                  <?
-                    if($_SESSION['user_type_id'] != '3'){
-					?>
-                         <li class="treeview <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 2){ echo "active"; }?>">
-                            <a href="#">
-                                <i class="fa fa-user"></i>
-                                <span>User</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="user.php?page=list"><i class="fa fa-angle-double-right"></i> User</a></li>
-                                
-                               
-                            </ul>
-                      </li>
-                      <?php
-					}
-					  ?>
-                          <?
-                    if($_SESSION['user_type_id'] != '2'){
-					?>
-                        <li>
-                            <a href="transaction.php?page=list">
-                                <i class="fa fa-calendar"></i> <span>Transaksi</span> 
-                        </a></li>
-                          </a></li>
-                      <?php
-					}
-					  ?>  
-                        <?
-                    if($_SESSION['user_type_id'] != '3'){
-					?>
-                         <li>
-                            <a href="edit_transaction.php?page=list">
-                                <i class="fa fa-calendar"></i> <span>Edit Transaksi</span> 
-                        </a></li>
-                      <?php
-					}
-					  ?>  
-                       <?
-                    if($_SESSION['user_type_id'] != '3'){
-					?>
-                     <li class="treeview <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 3){ echo "active"; }?>">
-                            <a href="#">
-                                <i class="fa fa-book"></i>
-                                <span>Laporan</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                
-                                <li><a href="report_summary.php?page=list"><i class="fa fa-angle-double-right"></i> Harian</a></li>
-                                <li><a href="report_detail.php?page=list"><i class="fa fa-angle-double-right"></i> Range Tanggal</a></li>
-                             
-                            </ul>
-                  </li>
-                  <?php
-					}
-				  ?>
               
                     </ul>
                 </section>

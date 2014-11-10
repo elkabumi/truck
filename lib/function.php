@@ -48,6 +48,7 @@ function format_back_date($date){
 
 	$date = explode("/", $date);
 	$back_date =  $date[2]."-".$date[1]."-".$date[0];
+
 	return $back_date;
 
 }
@@ -118,7 +119,7 @@ function get_user_data(){
 		case 1: $type = "Admin"; break;
 		case 2: $type = "Owner "; break;
 		case 3: $type = "Checker"; break;
-		case 4: $type = "PBD"; break;
+		case 4: $type = "View Laporan"; break;
 		case 5: $type = "RDH"; break;
 	}
 	

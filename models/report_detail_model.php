@@ -5,7 +5,7 @@ function select_detail($date1, $date2, $owner){
 	$parameter = ($owner == 0) ? "" : " and a.owner_id = $owner ";
 	$query = mysql_query("select
 						DATE_FORMAT(b.transaction_date,'%d-%m-%Y') AS tanggal_transaksi,				
-						a.truck_code, a.truck_p,a.truck_l,a.truck_t,b.*,c.owner_name, d.user_name,b.truck_volume AS volume
+						a.truck_code, a.truck_p,a.truck_l,a.truck_t,a.truck_nopol AS nopol,b.*,c.owner_name, d.user_name,b.truck_volume AS volume
 								from trucks a
 						JOIN transactions b ON b.truck_id = a.truck_id
 						JOIN owners c ON a.owner_id = c.owner_id    

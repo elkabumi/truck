@@ -76,19 +76,14 @@
                                             <?php
                                            $no = 1;
                                             while($row = mysql_fetch_array($query)){
-                                            ?>
+                                            $nama_tipe = array("","Admin","Owner", "Chekcer", "View Laporan");
+?>
                                             <tr>
                                             <td><?= $no?></td>
                                                 <td><?= $row['user_code']?></td>
                                                 <td><?= $row['user_name']?></td>
-                                                <?php
-												if($row['user_type_id'] == 1){?>
-                                                    <td>Admin</td>
-                                                    <? }else{ ?>
-                                                    <td>Eksternal</td>
-                                                    <?
-													}
-                                                ?>
+                                                    <td><?= $nama_tipe[$row['user_type_id']] ?></td>
+                                                
                                                  <td><?= $row['user_phone']?></td>
                                                
                                                <!-- <td style="text-align:center;">

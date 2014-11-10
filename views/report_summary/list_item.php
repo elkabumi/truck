@@ -1,5 +1,4 @@
 
-
               
                     <div class="row">
                         <div class="col-xs-12">
@@ -23,6 +22,9 @@
 												  <th colspan="<?= $max_vol?>">Volume Pengiriman</th>
                                                    <th rowspan="2">Total Rit</th>
                                                    <th rowspan="2">Total Volume</th>
+                                                   <?php
+                                                    if($_SESSION['user_type_id'] != 4){
+                                                   ?>
                                                    <th rowspan="2">Jasa Angkut Per Rit M3</th>
                                                    <th rowspan="2">Subsidi Tol</th>
                                                    <th rowspan="2">Harga Tanah Per Rit Truk</th>
@@ -30,6 +32,9 @@
                                                    <th rowspan="2">Total Subsidi Tol</th>
                                                    <th rowspan="2">Total Harga Urukan</th>
                                                    <th rowspan="2"> HPP<?= $nb?></th>
+                                                   <?php
+                                                   }
+                                                   ?>
                                             </tr>
                                             <tr>
                                             	<?php
@@ -55,7 +60,7 @@
 											
                                                 <td><?= $row_item['transaction_hour']; ?></td>
                                                 <td><?= $row_item['truck_code']; ?></td>
-                                                <td><?= $row_item['truck_nopol']?></td>
+                                                <td><?= $row_item['nopol']?></td>
                                                 <td><?= $row_item['owner_name']?></td>
 												
                                                 <?php
@@ -85,6 +90,9 @@
                                                 <td><?php
 														$jumlah_volume =  get_jumlah_volume($date, $row_item['truck_id']);
 														echo $jumlah_volume; ?></td>
+                                                <?php
+                                                 if($_SESSION['user_type_id'] != 4){
+                                                 ?>
                                                 <td><?= tool_format_number($row_item['transaction_transport_service']); ?></td>
                                                 <td><?= tool_format_number($row_item['transaction_toll_subsidy']); ?></td>
                                                 <td><?= tool_format_number($row_item['transaction_land_price']); ?></td>
@@ -103,6 +111,7 @@
                                                 	$hpp = $jumlah_jasa_angkut + $jumlah_subsidi_tol + $jumlah_harga_urukan;
 													echo tool_format_number($hpp);
 												?></b></td>
+                                                <?php } ?>
                                                 </tr>
                                             <?php
 											$no_item++;

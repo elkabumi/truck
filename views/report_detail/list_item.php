@@ -1,4 +1,3 @@
-
               
                     <div class="row">
                         <div class="col-xs-12">
@@ -20,11 +19,12 @@
 												  
 												  <th>Nama Pemilik</th>
                                                   <th>Volume</th>
+                                                  <?php if($_SESSION['user_type_id'] != 4){ ?>
                                                   <th>Jasa Angkut</th>
                                                   <th>Subsidi Tol</th>
                                                   <th>Harga Urukan</th>
                                                   <th>HPP</th>
-                                                  
+                                                  <?php } ?>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -37,16 +37,18 @@
 												<td><?= $row_item['tanggal_transaksi']; ?></td>
                                                 <td><?= $row_item['transaction_hour']; ?></td>
                                                  <td><?= $row_item['truck_code']?></td>
-                                                <td><?= $row_item['truck_nopol']?></td>
+                                                <td><?= $row_item['nopol']?></td>
                                                 <td><?= $row_item['truck_driver']?></td>
 												<td><?php echo $row_item['truck_p']." x ". $row_item['truck_l']." x ". $row_item['truck_t']; ?></td>
                                                 
                                                 <td><?= $row_item['owner_name']?></td>
 												<td><?= $row_item['volume']?></td>
+                                                <?php  if($_SESSION['user_type_id'] != 4){ ?>
                        							<td><?= tool_format_number($row_item['volume'] * $row_item['transaction_transport_service'])?></td>
                                                 <td><?= tool_format_number($row_item['transaction_toll_subsidy'])?></td>
                                                 <td><?= tool_format_number($row_item['transaction_land_price'])?></td>
                                                 <td><?= tool_format_number($row_item['transaction_hpp'])?></td>
+                                                <?php } ?>
                                                  </tr>
                                         
 

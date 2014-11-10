@@ -74,7 +74,9 @@ switch ($page) {
 			
 			
 			include '../views/report_detail/form_result.php';
+                         if($_SESSION['user_type_id'] != 4){
 			include '../views/report_detail/list_total.php';
+                        }
 			include '../views/report_detail/list_item.php';
 		}
 		

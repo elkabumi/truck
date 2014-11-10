@@ -71,7 +71,8 @@
                                           <label>Type</label>
                                            <select name="i_type" size="1" class="form-control"/>
                                              <option value="2">Owner</option>
-                                           <option value="3">Checker</option>       
+                                           <option value="3">Checker</option>     
+                                           <option value="4">View Laporan</option>       
                                            </select>                                    
                                   		</div>
 
